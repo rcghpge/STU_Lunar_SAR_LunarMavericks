@@ -263,8 +263,8 @@
       "Time": {
         "UseCurrentTime": false,
         "Timescale": 1.0,
-        "StartDateTAI": [ "timestamp", "9000-06-05T19:00:00.000000Z" ],
-        "noEndDateTAI": [ "timestamp", "10025-06-06T00:00:00.000000Z" ]
+        "StartDateTAI": [ "timestamp", "2027-06-05T19:00:00.000000Z" ],
+        "noEndDateTAI": [ "timestamp", "2027-06-06T00:00:00.000000Z" ]
       },
       "GraphicsFrame": [ "EntityRef", "Moon" ],
       "J2000Frame": [ "EntityRef", "SSB" ],

@@ -13,7 +13,7 @@
     "Systems": [
       {
         "Nametag": "MissionManager",
-        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/ExampleMM_TaskGraphSimple.py",
+        "Source": "Local/Repos/stu-uta-lunar-sar-2024/ExampleMM_TaskGraphSimple.py",
         "NOTE": "YOU CAN REPLACE Source WITH ANOTHER MISSION MANAGER PYTHON SYSTEM",
         "Type": "Python",
         "Active": true,
@@ -25,7 +25,7 @@
       },
       {
         "Nametag": "EntityBehavior_LTV1",
-        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
+        "Source": "Local/Repos/stu-uta-lunar-sar-2024/EntityBehavior_LTV.py",
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
@@ -36,7 +36,7 @@
       },
       {
         "Nametag": "EntityBehavior_LTV2",
-        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
+        "Source": "Local/Repos/stu-uta-lunar-sar-2024/EntityBehavior_LTV.py",
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
@@ -55,7 +55,7 @@
       },
       {
         "Nametag": "CompetitionBackend",
-        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/CompetitionBackend.py",
+        "Source": "Local/Repos/stu-uta-lunar-sar-2024/CompetitionBackend.py",
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
@@ -263,8 +263,8 @@
       "Time": {
         "UseCurrentTime": false,
         "Timescale": 1.0,
-        "StartDateTAI": [ "timestamp", "2026-06-05T19:00:00.000000Z" ],
-        "noEndDateTAI": [ "timestamp", "2026-06-06T00:00:00.000000Z" ]
+        "StartDateTAI": [ "timestamp", "9000-06-05T19:00:00.000000Z" ],
+        "noEndDateTAI": [ "timestamp", "10025-06-06T00:00:00.000000Z" ]
       },
       "GraphicsFrame": [ "EntityRef", "Moon" ],
       "J2000Frame": [ "EntityRef", "SSB" ],

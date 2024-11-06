@@ -9,6 +9,8 @@ class EntityBehavior:
     def __init__(self, en: st.Entity) -> None:
         self.en = en
         self.scanner: st.Entity = en.GetParam(st.VarType.entityRef, "Scanner")
+        self.battery: st.Entity = en.GetParam(st.VarType.entityRef, "Battery")
+        self.camera: st.Entity = en.GetParam(st.VarType.entityRef, "Camera")
         self.command_reactions = dict()
         self.camera_capture_reaction = None
         #TODO may shift this to params so we can read the active commands from the 
@@ -133,17 +135,20 @@ class EntityBehavior:
         # camera_en.setRotation_DCM(np.identity(3), self.en.GetBodyFixedFrame()) #TODO
         pass
 
-    def CameraCapture(self, exposure : float):
+    def CameraCapture(self, exposure : float) -> int:
         '''
         Capture an image from the entity's camera.
 
-        Use OnCameraCaptureDone to register a reaction to the image capture before calling this function.
+        Use st.OnImageReceived(capture_id, .....) to register a reaction to the image capture right after calling this function.
         '''
-        payload = st.ParamMap()
-        #TODO add camera properties
-        # payload.AddParam(st.VarType.entityRef, "Res", self.en)
-        # st.SimGlobals_DispatchEvent("ImageCapture", payload)
-        #TODO have something set up to listen on "ImageSend"
+        properties = st.CaptureImageProperties()
+        properties.EV = exposure
+        #TODO from camera en params
+        properties.ResolutionX = 512
+        properties.ResolutionY = 512
+        properties.FOV = 90
+        # leaving captureID blank so it randomizes
+        return st.CaptureImage(self.camera, properties)
 
     def _handleCameraCaptureDone(self, payload : st.ParamMap, timestamp : st.timestamp):
         '''
@@ -155,23 +160,4 @@ class EntityBehavior:
         pixelsR = payload.GetParamArray(st.VarType.uint8, "PixelsR")
         pixelsG = payload.GetParamArray(st.VarType.uint8, "PixelsG")
         pixelsB = payload.GetParamArray(st.VarType.uint8, "PixelsB")
-        resx = payload.GetParamArray(st.VarType.int32, "ResolutionX")
-        resy = payload.GetParamArray(st.VarType.int32, "ResolutionY")
-        pixelsR_np = np.asarray(pixelsR)
-        pixelsR_np.reshape(resy, resx, 1)
-        pixelsG_np = np.asarray(pixelsG)
-        pixelsG_np.reshape(resy, resx, 1)
-        pixelsB_np = np.asarray(pixelsB)
-        pixelsB_np.reshape(resy, resx, 1)
-
-        pixels = np.concatenate((pixelsR_np, pixelsG_np, pixelsB_np), axis=2)
-        self.camera_capture_reaction(captureID, pixels)
-
-
-    def OnCameraCaptureDone(self, reaction) -> None:
-        '''
-        Registers a reaction to a command received by this entity.
-        '''
-        self.camera_capture_reaction = reaction
-        # st.SimGlobals_AddEventListener("ImageSend", self._handleCameraCaptureDone)
-        #TODO
+        

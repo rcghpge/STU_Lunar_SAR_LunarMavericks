@@ -1,0 +1,1136 @@
+{
+    "meta": {
+        "schemaversion_major": 2,
+        "schemaversion_minor": 0,
+        "schemaversion_patch": 0,
+        "Title": "Mission Timeline",
+        "Description": "Human-in-the-loop mission timeline optimization within a complex Lunar surface architecture."
+    },
+    "IncludeSims": [
+        "Core/Compute_Server/packages/BaseSims/EarthMoonSun_WithInertial.json"
+    ],
+    "SystemManager": {
+        "Systems": [
+            {
+                "Nametag": "ParamWrangler",
+                "Source": "TestingTools/ParamWrangler.py",
+                "Type": "Python",
+                "Active": false,
+                "Inst_Parameters": {}
+            },
+            {
+                "Nametag": "Spicy",
+                "Source": "Spicy/bin/Spicy",
+                "Type": "Normal",
+                "Active": true,
+                "Singleton": true,
+                "Frequency": 200.0,
+                "Inst_Parameters": {
+                    "observer": "SSB",
+                    "observerframe": "J2000"
+                }
+            },
+            {
+                "Nametag": "SnapAssetToPlanet",
+                "Source": "CoStar/SnapAssetToPlanet/bin/SnapAssetToPlanet",
+                "Active": true,
+                "Type": "Normal",
+                "FreqType": "Sim",
+                "Frequency": 60.0,
+                "Inst_Parameters": {
+                    "DoSlowGraphicsStuff": true,
+                    "TraverseFrame": [
+                        "EntityRef",
+                        "Moon"
+                    ],
+                    "PlanetRadius_m": 1737400.0,
+                    "Datasets": [
+                        "array",
+                        "string",
+                        "Moon/Local/SouthPole/LRO_LOLA_DEM_SPolar875_10m",
+                        "Moon/Local/SouthPole/LDEM_Site01-Site-04_upscale_craters"
+                    ],
+                    "DatasetPriorities": [
+                        "array",
+                        "double",
+                        0.0,
+                        1.0
+                    ]
+                }
+            },
+            {
+                "Nametag": "ProceduralRocks11",
+                "Source": "EnvironmentalModels/LocalGroundScatter/bin/LocalGroundScatter",
+                "Active": true,
+                "Type": "Normal",
+                "Frequency": 5.0,
+                "Inst_Parameters": {
+                    "DoBulkSpawn": true,
+                    "DoBulkDelete": true,
+                    "MaximumItemRadius": 2000000.0,
+                    "BatchSpawnSize": [
+                        "int32",
+                        10
+                    ],
+                    "Planet": [
+                        "EntityRef",
+                        "Moon"
+                    ],
+                    "Pawn": [
+                        "EntityRef",
+                        "Spectator1"
+                    ],
+                    "PlanetRadius_m": 1737400.0,
+                    "Datasets": [
+                        "array",
+                        "string",
+                        "Moon/Local/SouthPole/LRO_LOLA_DEM_SPolar875_10m",
+                        "Moon/Local/SouthPole/LDEM_Site01-Site-04_upscale_craters"
+                    ],
+                    "DatasetPriorities": [
+                        "array",
+                        "double",
+                        0.0,
+                        1.0
+                    ],
+                    "Seed_lat": [
+                        "int32",
+                        0
+                    ],
+                    "Seed_lon": [
+                        "int32",
+                        1
+                    ],
+                    "Seed_azimuth": [
+                        "int32",
+                        2
+                    ],
+                    "Seed_scale": [
+                        "int32",
+                        3
+                    ],
+                    "LatitudeBounds": [
+                        "doubleV2",
+                        -89.39,
+                        -89.34
+                    ],
+                    "LongitudeBounds": [
+                        "doubleV2",
+                        -139.0,
+                        -134.5
+                    ],
+                    "NumberOfEntities": [
+                        "int32",
+                        100
+                    ],
+                    "Height": 0.0,
+                    "ScaleMin": 8.0,
+                    "ScaleMax": 15.0,
+                    "EntityTemplateSource": "SharedData/SCAssets/SolarSystem/GroundScatter/Rock11.json"
+                }
+            },
+            {
+                "Nametag": "ProceduralRocks10",
+                "Source": "EnvironmentalModels/LocalGroundScatter/bin/LocalGroundScatter",
+                "Active": true,
+                "Type": "Normal",
+                "Frequency": 5.0,
+                "Inst_Parameters": {
+                    "DoBulkSpawn": true,
+                    "DoBulkDelete": true,
+                    "MaximumItemRadius": 2000000.0,
+                    "BatchSpawnSize": [
+                        "int32",
+                        10
+                    ],
+                    "Planet": [
+                        "EntityRef",
+                        "Moon"
+                    ],
+                    "Pawn": [
+                        "EntityRef",
+                        "Spectator1"
+                    ],
+                    "PlanetRadius_m": 1737400.0,
+                    "Datasets": [
+                        "array",
+                        "string",
+                        "Moon/Local/SouthPole/LRO_LOLA_DEM_SPolar875_10m",
+                        "Moon/Local/SouthPole/LDEM_Site01-Site-04_upscale_craters"
+                    ],
+                    "DatasetPriorities": [
+                        "array",
+                        "double",
+                        0.0,
+                        1.0
+                    ],
+                    "Seed_lat": [
+                        "int32",
+                        4
+                    ],
+                    "Seed_lon": [
+                        "int32",
+                        5
+                    ],
+                    "Seed_azimuth": [
+                        "int32",
+                        6
+                    ],
+                    "Seed_scale": [
+                        "int32",
+                        7
+                    ],
+                    "LatitudeBounds": [
+                        "doubleV2",
+                        -89.39,
+                        -89.34
+                    ],
+                    "LongitudeBounds": [
+                        "doubleV2",
+                        -139.0,
+                        -134.5
+                    ],
+                    "NumberOfEntities": [
+                        "int32",
+                        100
+                    ],
+                    "Height": 0.0,
+                    "ScaleMin": 10.0,
+                    "ScaleMax": 20.0,
+                    "EntityTemplateSource": "SharedData/SCAssets/SolarSystem/GroundScatter/Rock10.json"
+                }
+            }
+        ],
+        "Taskflows": []
+    },
+    "DataManager": {
+        "SimEntity": {
+            "Time": {
+                "UseCurrentTime": false,
+                "Timescale": 1.0,
+                "StartDateTAI": [
+                    "timestamp",
+                    "2026-06-05T19:00:00.000000Z"
+                ],
+                "noEndDateTAI": [
+                    "timestamp",
+                    "2026-06-06T00:00:00.000000Z"
+                ]
+            },
+            "GraphicsFrame": [
+                "EntityRef",
+                "Moon"
+            ],
+            "J2000Frame": [
+                "EntityRef",
+                "SSB"
+            ],
+            "ChargingStation": [
+                "EntityRef",
+                "ChargingStation"
+            ],
+            "Habitat": [
+                "EntityRef",
+                "Habitat"
+            ],
+            "MoonInertialFrame": [
+                "EntityRef",
+                "Moon_Inertial"
+            ],
+            "Planet": [
+                "EntityRef",
+                "Moon"
+            ],
+            "Target": [
+                "EntityRef",
+                "CrashedLunarLander"
+            ],
+            "LocalCoordinateOrigin": [
+                "EntityRef",
+                "LocalCoordinateOrigin"
+            ],
+            "CrashedLanderLocationOptions": {
+                "PossibleLocation_CraterRim": [
+                    "doubleV3",
+                    -13093.0,
+                    -13170.0,
+                    -1739061.0
+                ],
+                "PossibleLocation1": [
+                    "doubleV3",
+                    -14122.0,
+                    -13036.0,
+                    -1738942.0
+                ],
+                "PossibleLocation2": [
+                    "doubleV3",
+                    -13930.0,
+                    -13145.0,
+                    -1738893.0
+                ],
+                "PossibleLocation3": [
+                    "doubleV3",
+                    -14114.0,
+                    -13464.0,
+                    -1738917.0
+                ],
+                "PossibleLocation4": [
+                    "doubleV3",
+                    -13891.0,
+                    -12649.0,
+                    -1738962.0
+                ],
+                "PossibleLocation5": [
+                    "doubleV3",
+                    -13631.0,
+                    -13389.0,
+                    -1738950.0
+                ]
+            }
+        },
+        "entities": [
+            {
+                "#Required": {
+                    "Name": "Spectator1",
+                    "Type": "Pawn",
+                    "Systems": []
+                },
+                "#Pawn": {
+                    "BP_Path": "/Game/SpaceCraft_UI/FlatScreen/UIP2D_Spectator.UIP2D_Spectator_C",
+                    "Role_Name": "Spectator",
+                    "Is_Possessed": false,
+                    "Username": "(No User)",
+                    "Gadgets": {
+                        "0": {
+                            "Name": "Time",
+                            "Static": true,
+                            "WidgetClass": "WidgetBlueprint'/Game/SpaceCraft_UI/FlatScreen/TimeManagement.TimeManagement'",
+                            "IconTexture": "Texture2D'/Game/BuilderTools/WidgetImages/MainMenu/MSTV_MMIcon_Simulate.MSTV_MMIcon_Simulate'",
+                            "Slot": "TopLeft"
+                        },
+                        "1": {
+                            "Name": "Camera",
+                            "Static": true,
+                            "WidgetClass": "WidgetBlueprint'/Game/SpaceCraft_UI/FlatScreen/W_CameraControl.W_CameraControl'",
+                            "IconTexture": "Texture2D'/Game/SpaceCraft_UI/FlatScreen/CameraIcon_white.CameraIcon_white'",
+                            "Slot": "TopRight"
+                        }
+                    }
+                },
+                "Dynamics": {
+                    "PropagationType": "Clientside_PawnControl",
+                    "GenerateCollider": false,
+                    "Mass": 1,
+                    "ResidentFrame": [
+                        "EntityRef",
+                        "Moon"
+                    ]
+                },
+                "Graphics": {
+                    "Scale": 1,
+                    "RenderFar": true
+                },
+                "Location": [
+                    "doubleV3",
+                    -12825.0,
+                    -12621.0,
+                    -1739232.0
+                ],
+                "Rotation": [
+                    "doubleV4",
+                    -0.999724,
+                    -0.0001904,
+                    0.0218141,
+                    0.0087245
+                ],
+                "Velocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngVelocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Acceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngAcceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "TransitionGraphicsFrame": true,
+                "ConstrainZAxisToPlanet": true,
+                "MovementSpeed": 250.0,
+                "NoClip": false
+            },
+            {
+                "#Required": {
+                    "Type": "BP",
+                    "Name": "ChargingStation",
+                    "Systems": [
+                        "SnapAssetToPlanet"
+                    ]
+                },
+                "#BP": {
+                    "BP_Path": "/Game/StaticMeshes/StaticStructures/ISRU/E_ChargingStation.E_ChargingStation_C"
+                },
+                "Dynamics": {
+                    "PropagationType": "ComputeVelocity",
+                    "GenerateCollider": false,
+                    "Mass": 1.0,
+                    "ResidentFrame": [
+                        "EntityRef",
+                        "Moon"
+                    ]
+                },
+                "Graphics": {
+                    "RenderFar": true,
+                    "Scale": 1.0,
+                    "IsLightSource": false
+                },
+                "Location": [
+                    "doubleV3",
+                    -12911.0,
+                    -12507.0,
+                    -1739182.0
+                ],
+                "Rotation": [
+                    "doubleV4",
+                    -0.999724,
+                    -0.0001904,
+                    -0.0218141,
+                    0.0087245
+                ],
+                "Velocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Acceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngVelocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngAcceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Height": 0.0,
+                "AlignToSurfaceNormal": true
+            },
+            {
+                "#Required": {
+                    "Name": "ChargingStationMarker",
+                    "Type": "FromTemplate",
+                    "Systems": []
+                },
+                "#FromTemplate": {
+                    "Source_Path": "SharedData/SCAssets/Basic/ScaledHoloMarker.json",
+                    "ParamOverrides": {
+                        "Dynamics": {
+                            "ResidentFrame": [
+                                "EntityRef",
+                                "ChargingStation"
+                            ]
+                        },
+                        "ObjectHeight": 8.0,
+                        "MinRenderDist_km": 0.01,
+                        "MaxRenderDist_km": 300000.0,
+                        "MarkerName": "Charging Station"
+                    }
+                }
+            },
+            {
+                "#Required": {
+                    "Name": "ProcessingFacility",
+                    "Type": "BP",
+                    "Systems": [
+                        "SnapAssetToPlanet"
+                    ]
+                },
+                "#BP": {
+                    "BP_Path": "/Game/StaticMeshes/StaticStructures/ISRU/E_WaterExtractor.E_WaterExtractor_C"
+                },
+                "Dynamics": {
+                    "PropagationType": "ComputeAcceleration",
+                    "GenerateCollider": false,
+                    "Mass": 1,
+                    "ResidentFrame": [
+                        "EntityRef",
+                        "Moon"
+                    ]
+                },
+                "Graphics": {
+                    "Scale": 1,
+                    "RenderFar": true
+                },
+                "Location": [
+                    "doubleV3",
+                    -12150.0,
+                    -11335.0,
+                    -1739281.0
+                ],
+                "Rotation": [
+                    "doubleV4",
+                    0.9925462,
+                    0.0,
+                    -0.1218693,
+                    0.0
+                ],
+                "Velocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngVelocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Acceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngAcceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Height": 0.0,
+                "AlignToSurfaceNormal": true
+            },
+            {
+                "#Required": {
+                    "Name": "ProcessingFacilityMarker",
+                    "Type": "FromTemplate",
+                    "Systems": []
+                },
+                "#FromTemplate": {
+                    "Source_Path": "SharedData/SCAssets/Basic/ScaledHoloMarker.json",
+                    "ParamOverrides": {
+                        "Dynamics": {
+                            "ResidentFrame": [
+                                "EntityRef",
+                                "ProcessingFacility"
+                            ]
+                        },
+                        "ObjectHeight": 6.0,
+                        "MinRenderDist_km": 0.01,
+                        "MaxRenderDist_km": 300000.0,
+                        "MarkerName": "Processing Facility"
+                    }
+                }
+            },
+            {
+                "#Required": {
+                    "Name": "Beacon1",
+                    "Type": "BP",
+                    "Systems": [
+                        "SnapAssetToPlanet"
+                    ]
+                },
+                "#BP": {
+                    "BP_Path": "/Game/StaticMeshes/StaticStructures/ISRU/E_Beacon.E_Beacon_C"
+                },
+                "Dynamics": {
+                    "PropagationType": "ComputeAcceleration",
+                    "GenerateCollider": false,
+                    "Mass": 1,
+                    "ResidentFrame": [
+                        "EntityRef",
+                        "Moon"
+                    ]
+                },
+                "Graphics": {
+                    "Scale": 1,
+                    "RenderFar": true
+                },
+                "Location": [
+                    "doubleV3",
+                    -13000.0,
+                    -12800.0,
+                    -1739119.0
+                ],
+                "Rotation": [
+                    "doubleV4",
+                    0.9953962,
+                    0.0,
+                    -0.0958458,
+                    0.0
+                ],
+                "Velocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngVelocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Acceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngAcceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Height": -0.1,
+                "LOSHeight": 500.0
+            },
+            {
+                "#Required": {
+                    "Name": "Beacon2",
+                    "Type": "BP",
+                    "Systems": [
+                        "SnapAssetToPlanet"
+                    ]
+                },
+                "#BP": {
+                    "BP_Path": "/Game/StaticMeshes/StaticStructures/ISRU/E_Beacon.E_Beacon_C"
+                },
+                "Dynamics": {
+                    "PropagationType": "ComputeAcceleration",
+                    "GenerateCollider": false,
+                    "Mass": 1,
+                    "ResidentFrame": [
+                        "EntityRef",
+                        "Moon"
+                    ]
+                },
+                "Graphics": {
+                    "Scale": 1,
+                    "RenderFar": true
+                },
+                "Location": [
+                    "doubleV3",
+                    -12900.0,
+                    -12600.0,
+                    -1739202.0
+                ],
+                "Rotation": [
+                    "doubleV4",
+                    0.9953962,
+                    0.0,
+                    -0.0958458,
+                    0.0
+                ],
+                "Velocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngVelocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Acceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngAcceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Height": -0.1,
+                "LOSHeight": 500.0
+            },
+            {
+                "#Required": {
+                    "Name": "Beacon3",
+                    "Type": "BP",
+                    "Systems": [
+                        "SnapAssetToPlanet"
+                    ]
+                },
+                "#BP": {
+                    "BP_Path": "/Game/StaticMeshes/StaticStructures/ISRU/E_Beacon.E_Beacon_C"
+                },
+                "Dynamics": {
+                    "PropagationType": "ComputeAcceleration",
+                    "GenerateCollider": false,
+                    "Mass": 1,
+                    "ResidentFrame": [
+                        "EntityRef",
+                        "Moon"
+                    ]
+                },
+                "Graphics": {
+                    "Scale": 1,
+                    "RenderFar": true
+                },
+                "Location": [
+                    "doubleV3",
+                    -12700.0,
+                    -12700.0,
+                    -1739202.0
+                ],
+                "Rotation": [
+                    "doubleV4",
+                    0.9953962,
+                    0.0,
+                    -0.0958458,
+                    0.0
+                ],
+                "Velocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngVelocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Acceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngAcceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Height": -0.1,
+                "LOSHeight": 500.0
+            },
+            {
+                "#Required": {
+                    "Name": "Beacon1Marker",
+                    "Type": "FromTemplate",
+                    "Systems": []
+                },
+                "#FromTemplate": {
+                    "Source_Path": "SharedData/SCAssets/Basic/ScaledHoloMarker.json",
+                    "ParamOverrides": {
+                        "Dynamics": {
+                            "ResidentFrame": [
+                                "EntityRef",
+                                "Beacon1"
+                            ]
+                        },
+                        "ObjectHeight": 6.0,
+                        "MinRenderDist_km": 0.01,
+                        "MaxRenderDist_km": 300000.0,
+                        "MarkerName": "Comms Beacon 1"
+                    }
+                }
+            },
+            {
+                "#Required": {
+                    "Name": "Beacon2Marker",
+                    "Type": "FromTemplate",
+                    "Systems": []
+                },
+                "#FromTemplate": {
+                    "Source_Path": "SharedData/SCAssets/Basic/ScaledHoloMarker.json",
+                    "ParamOverrides": {
+                        "Dynamics": {
+                            "ResidentFrame": [
+                                "EntityRef",
+                                "Beacon2"
+                            ]
+                        },
+                        "ObjectHeight": 6.0,
+                        "MinRenderDist_km": 0.01,
+                        "MaxRenderDist_km": 300000.0,
+                        "MarkerName": "Comms Beacon 2"
+                    }
+                }
+            },
+            {
+                "#Required": {
+                    "Name": "Beacon3Marker",
+                    "Type": "FromTemplate",
+                    "Systems": []
+                },
+                "#FromTemplate": {
+                    "Source_Path": "SharedData/SCAssets/Basic/ScaledHoloMarker.json",
+                    "ParamOverrides": {
+                        "Dynamics": {
+                            "ResidentFrame": [
+                                "EntityRef",
+                                "Beacon3"
+                            ]
+                        },
+                        "ObjectHeight": 6.0,
+                        "MinRenderDist_km": 0.01,
+                        "MaxRenderDist_km": 300000.0,
+                        "MarkerName": "Comms Beacon 3"
+                    }
+                }
+            },
+            {
+                "#Required": {
+                    "Name": "Habitat",
+                    "Type": "BP",
+                    "Systems": []
+                },
+                "#BP": {
+                    "BP_Path": "/Game/StaticMeshes/Modular/MPSH/HighFidelityDuplicates/MPSH_IAC.MPSH_IAC_C"
+                },
+                "Dynamics": {
+                    "PropagationType": "ComputeAcceleration",
+                    "GenerateCollider": false,
+                    "Mass": 1,
+                    "ResidentFrame": [
+                        "EntityRef",
+                        "Moon"
+                    ]
+                },
+                "Graphics": {
+                    "Scale": 1,
+                    "RenderFar": true
+                },
+                "Location": [
+                    "doubleV3",
+                    -12220.0,
+                    -11325.0,
+                    -1739279.5
+                ],
+                "Rotation": [
+                    "doubleV4",
+                    1.0,
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Velocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngVelocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Acceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngAcceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            },
+            {
+                "#Required": {
+                    "Name": "MoonHabMarker",
+                    "Type": "FromTemplate",
+                    "Systems": []
+                },
+                "#FromTemplate": {
+                    "Source_Path": "SharedData/SCAssets/Basic/ScaledHoloMarker.json",
+                    "ParamOverrides": {
+                        "Dynamics": {
+                            "ResidentFrame": [
+                                "EntityRef",
+                                "Habitat"
+                            ]
+                        },
+                        "ObjectHeight": 5.0,
+                        "MinRenderDist_km": 0.01,
+                        "MaxRenderDist_km": 300000.0,
+                        "MarkerName": "Habitat"
+                    }
+                }
+            },
+            {
+                "#Required": {
+                    "Name": "SouthPole",
+                    "Type": "Data",
+                    "Systems": []
+                },
+                "Dynamics": {
+                    "PropagationType": "ComputeAcceleration",
+                    "Mass": 100.0,
+                    "ResidentFrame": [
+                        "EntityRef",
+                        "Moon"
+                    ]
+                },
+                "Location": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    -1737400.0
+                ],
+                "Velocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Acceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Rotation": [
+                    "doubleV4",
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "AngVelocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngAcceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            },
+            {
+                "#Required": {
+                    "Name": "CrashedLunarLander",
+                    "Type": "FromTemplate",
+                    "Systems": [
+                        "SnapAssetToPlanet"
+                    ]
+                },
+                "#FromTemplate": {
+                    "Source_Path": "SharedData/SCAssets/SpaceVehicles/CrashedLunarLander/CrashedLunarLander.json",
+                    "ParamOverrides": {
+                        "Dynamics": {
+                            "ResidentFrame": [
+                                "EntityRef",
+                                "Moon"
+                            ]
+                        },
+                        "Location": [
+                            "doubleV3",
+                            -14122.0,
+                            -13036.0,
+                            -1738942.0
+                        ],
+                        "Rotation": [
+                            "doubleV4",
+                            0.0,
+                            0.0,
+                            -0.707,
+                            0.707
+                        ],
+                        "AlignToSurfaceNormal": true,
+                        "Height": -0.35,
+                        "Height_IfFlat": -0.35,
+                        "Height_IfConcaveUp": 0.5
+                    }
+                }
+            },
+            {
+                "#Required": {
+                    "Name": "Alien",
+                    "Type": "FromTemplate",
+                    "Systems": [
+                        "SnapAssetToPlanet"
+                    ]
+                },
+                "#FromTemplate": {
+                    "Source_Path": "SharedData/SCAssets/Characters/Alien/GrayAlien.json",
+                    "ParamOverrides": {
+                        "Dynamics": {
+                            "ResidentFrame": [
+                                "EntityRef",
+                                "Moon"
+                            ]
+                        },
+                        "Location": [
+                            "doubleV3",
+                            -14102.0,
+                            -13036.0,
+                            -1738942.0
+                        ],
+                        "Rotation": [
+                            "doubleV4",
+                            0.0,
+                            0.0,
+                            -0.707,
+                            0.707
+                        ],
+                        "AlignToSurfaceNormal": false,
+                        "Height": 0.0
+                    }
+                }
+            },
+            {
+                "#Required": {
+                    "Name": "LocalCoordsAxesVis",
+                    "Type": "BP",
+                    "Systems": []
+                },
+                "#BP": {
+                    "BP_Path": "/Game/StaticMeshes/Other/CoordinateSystem/RightHandCoordSystem.RightHandCoordSystem_C"
+                },
+                "Dynamics": {
+                    "PropagationType": "ComputeAcceleration",
+                    "GenerateCollider": false,
+                    "Mass": 1,
+                    "ResidentFrame": [
+                        "EntityRef",
+                        "LocalCoordinateOrigin"
+                    ]
+                },
+                "Graphics": {
+                    "Scale": 50,
+                    "RenderFar": true
+                },
+                "Location": [
+                    "doubleV3",
+                    0,
+                    0,
+                    20
+                ],
+                "Velocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Acceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Rotation": [
+                    "doubleV4",
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "AngVelocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngAcceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ]
+            },
+            {
+                "#Required": {
+                    "Name": "LocalCoordinateOrigin",
+                    "Type": "Data",
+                    "Systems": [
+                        "SnapAssetToPlanet"
+                    ]
+                },
+                "Dynamics": {
+                    "PropagationType": "ComputeAcceleration",
+                    "GenerateCollider": false,
+                    "Mass": 1,
+                    "ResidentFrame": [
+                        "EntityRef",
+                        "Moon"
+                    ]
+                },
+                "Graphics": {
+                    "Scale": 1,
+                    "RenderFar": true
+                },
+                "Location": [
+                    "doubleV3",
+                    -13700.0,
+                    -12900.0,
+                    -1739000.0
+                ],
+                "Velocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Acceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "Rotation": [
+                    "doubleV4",
+                    0.0,
+                    0.0,
+                    0.0,
+                    1.0
+                ],
+                "AngVelocity": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AngAcceleration": [
+                    "doubleV3",
+                    0.0,
+                    0.0,
+                    0.0
+                ],
+                "AlignToSurfaceNormal": false,
+                "AlignToNorth": true,
+                "Height": 0.0
+            }
+        ]
+    }
+}

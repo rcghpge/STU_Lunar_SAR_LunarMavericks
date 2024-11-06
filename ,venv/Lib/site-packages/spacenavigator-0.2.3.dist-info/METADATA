@@ -1,0 +1,11 @@
+Metadata-Version: 2.1
+Name: spacenavigator
+Version: 0.2.3
+Summary: Python interface to the 3DConnexion Space Navigator
+Home-page: https://github.com/johnhw/pyspacenavigator
+Download-URL: https://github.com/johnhw/pyspacenavigator/tarball/latest
+Author: John Williamson
+Author-email: johnhw@gmail.com
+Keywords: spacenavigator,3d,6 DoF,HID
+License-File: LICENSE
+

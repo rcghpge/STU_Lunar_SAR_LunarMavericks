@@ -12,6 +12,9 @@ import numpy as np
 # DON'T CHANGE ANY OF THE ABOVE; NECESSARY FOR JOINING SIMULATION
 #################################################################
 
+# Add the API directory to the Python path if necessary
+sys.path.append('C:\Users\PC\AppData\Local\SimDynamX\STPro\Assets\Repos\STU_Lunar_SAR_LunarMavericks\API')
+
 from API.STU_Common import *
 import API.MissionManagerFuncs as MM
 mm = MM.MissionManager()

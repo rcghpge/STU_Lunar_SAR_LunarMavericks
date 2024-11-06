@@ -21,27 +21,58 @@ import API.EntityTelemetry as ET
 
 sim_start_time : st.timestamp = st.SimGlobals_SimClock_GetTimeNow()
 
-entities = st.GetThisSystem().GetParamArray(st.VarType.entityRef, "Entities")
-LTV1: st.Entity = entities[0]
-LTV2: st.Entity = entities[1]
+every_en = st.GetThisSystem().GetParamArray(st.VarType.entityRef, "Entities")
 
 # Get planet
 planet: st.Entity = st.GetThisSystem().GetParam(st.VarType.entityRef, "Planet")
 
 # Set up "mover" objects for all entities
-mover_LTV1 = SM.SurfaceMover(LTV1, planet)
-mover_LTV2 = SM.SurfaceMover(LTV2, planet)
+# mover_LTV1 = SM.SurfaceMover(LTV1, planet)
+# mover_LTV2 = SM.SurfaceMover(LTV2, planet)
+
+charging_station: st.Entity = st.GetSimEntity().GetParam(st.VarType.entityRef, "ChargingStation")
+power_assembly: st.Entity = st.GetSimEntity().GetParam(st.VarType.entityRef, "PowerAssembly")
 
 #######################
 ##  Simulation Loop  ##
 #######################
+
+CHARGING_RADIUS_M = 10.0
 
 exit_flag = False
 while not exit_flag:
     LoopFreqHz = st.GetThisSystem().GetParam(st.VarType.double, "LoopFreqHz")
     time.sleep(1.0 / LoopFreqHz)
 
-    
+    ### Nominal sim code ###
+
+    # Charging
+    for en in every_en:
+        en_xy, _ = ET.GetCurrentXY(en)
+        charging_xy = ET.GetChargingStationXY()
+
+        edge_list = ["ChargingStation_LTV1", 
+                    "ChargingStation_LTV2", 
+                    "ChargingStation_ScoutRover1", 
+                    "ChargingStation_ScoutRover2", 
+                    "Battery_LTV1", 
+                    "Battery_LTV2", 
+                    "ChargingStation_EVA1", 
+                    "ChargingStation_EVA2", 
+                    "Tank1_EVA1", 
+                    "Tank1_EVA2"]
+        
+        for edge in edge_list:
+            en_from = power_assembly.GetParam(st.VarType.entityRef, ["#Assembly", "Edges", edge, "From"])
+            en_to = power_assembly.GetParam(st.VarType.entityRef, ["#Assembly", "Edges", edge, "To"])
+            if en_from == charging_station and en_to == en:
+                # Distance check
+                if ((en_xy.x - charging_xy.x) ** 2 + (en_xy.y - charging_xy.y) ** 2) < CHARGING_RADIUS_M ** 2:
+                    power_assembly.SetParam(st.VarType.bool, ["#Assembly", "Edges", edge, "IsActive"], True)
+                else:
+                    power_assembly.SetParam(st.VarType.bool, ["#Assembly", "Edges", edge, "IsActive"], False)
+
+    ### Sim end condition checking ###
     # Check whether the challenge end condition has been met
     # (For initial submission: Any robot reaches the crash site)
     # (For full submission: LTV with enough resources has reached the crash site)
@@ -51,9 +82,10 @@ while not exit_flag:
     #TODO implementation
     any_robot_reached_crash_site = False
 
-    target_found, target_xy, had_comms = ET.GetTargetScanStatus(LTV1)
-    if(target_found):
-        any_robot_reached_crash_site = True
+    for en in every_en:
+        target_found, target_xy, had_comms = ET.GetTargetScanStatus(en)
+        if(target_found):
+            any_robot_reached_crash_site = True
 
     if(not any_robot_reached_crash_site):
         end_condition = False

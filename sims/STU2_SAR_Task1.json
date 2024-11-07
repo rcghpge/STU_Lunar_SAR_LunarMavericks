@@ -49,7 +49,7 @@
         "Nametag": "ParamWrangler",
         "Source": "TestingTools/ParamWrangler.py",
         "Type": "Python",
-        "Active": false,
+        "Active": true,
         "Inst_Parameters": {
         }
       },
@@ -297,7 +297,7 @@
         "#Required": {
           "Name": "Spectator1",
           "Type": "Pawn",
-          "Systems": []
+          "Systems": ["ParamWrangler"]
         },
         "#Pawn": {
           "BP_Path": "/Game/SpaceCraft_UI/FlatScreen/UIP2D_Spectator.UIP2D_Spectator_C",

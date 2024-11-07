@@ -10,7 +10,7 @@ class EntityBehavior:
         self.en = en
         self.scanner: st.Entity = en.GetParam(st.VarType.entityRef, "Scanner")
         self.battery: st.Entity = en.GetParam(st.VarType.entityRef, "Battery")
-        self.camera: st.Entity = en.GetParam(st.VarType.entityRef, "Camera")
+        #self.camera: st.Entity = en.GetParam(st.VarType.entityRef, "Camera")
         self.command_reactions = dict()
         self.camera_capture_reaction = None
         #TODO may shift this to params so we can read the active commands from the 

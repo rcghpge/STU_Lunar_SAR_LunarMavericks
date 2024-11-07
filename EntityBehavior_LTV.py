@@ -36,33 +36,33 @@ def MoveToCoord_Received(command: Command):
                           "LTV Behavior", st.Severity.Info)
 
 
-en_behavior.OnCommandReceived("MoveToCoord", MoveToCoord_Received)
+#en_behavior.OnCommandReceived("MoveToCoord", MoveToCoord_Received)
 
 
-def On_MoveComplete(payload : st.ParamMap):
-    command_type = "MoveToCoord"
-    command_id = _commandID_Str(en, command_type)
+#def On_MoveComplete(payload : st.ParamMap):
+    #command_type = "MoveToCoord"
+    #command_id = _commandID_Str(en, command_type)
     # st.OnScreenLogMessage("Evaluating completion for command id: " + command_id, 
     #                       "LTV Behavior", st.Severity.Info)
     
-    if (command_type in en_behavior.ActiveCommands()):
-        if en.HasParam("HasComms"):
-            if en.GetParam(st.VarType.bool, "HasComms"):
-                en_behavior.CompleteCommand(command_type, payload)
-            else:
-                st.OnScreenLogMessage("MoveToCoord failed because of comms loss.", 
-                                      "LTV Behavior", st.Severity.Info)
-                en_behavior.FailCommand(command_type, payload)
-        else:
-            en_behavior.CompleteCommand(command_type, payload)
-    else:
-        st.OnScreenLogMessage("MoveToCoord failed because of missing command in active commands.", 
-                              "LTV Behavior", st.Severity.Error)
-        st.logger_warn("Can't complete MoveToCoord because it has already been deleted from active commands.")
+    #if (command_type in en_behavior.ActiveCommands()):
+        #if en.HasParam("HasComms"):
+            #if en.GetParam(st.VarType.bool, "HasComms"):
+                #en_behavior.CompleteCommand(command_type, payload)
+            #else:
+                #st.OnScreenLogMessage("MoveToCoord failed because of comms loss.", 
+                                      #"LTV Behavior", st.Severity.Info)
+                #en_behavior.FailCommand(command_type, payload)
+        #else:
+            #en_behavior.CompleteCommand(command_type, payload)
+    #else:
+        #st.OnScreenLogMessage("MoveToCoord failed because of missing command in active commands.", 
+                              #"LTV Behavior", st.Severity.Error)
+        #st.logger_warn("Can't complete MoveToCoord because it has already been deleted from active commands.")
         # en_behavior.FailCommand(command_type, payload)
 
 
-mover.OnMoveComplete(On_MoveComplete)
+#mover.OnMoveComplete(On_MoveComplete)
 
 def RotateToAzimuth_Received(command: Command):
     payload: st.ParamMap = command.payload
@@ -70,9 +70,9 @@ def RotateToAzimuth_Received(command: Command):
     mover.TurnToAzimuth(az)
     st.OnScreenLogMessage("Received TurnToAzimuth command; rotating to a specified azimuth.", 
                         "LTV Behavior", st.Severity.Info)
-    en_behavior.CompleteCommand("RotateToAzimuth", st.ParamMap())
+    #en_behavior.CompleteCommand("RotateToAzimuth", st.ParamMap())
 
-en_behavior.OnCommandReceived("RotateToAzimuth", RotateToAzimuth_Received)
+#en_behavior.OnCommandReceived("RotateToAzimuth", RotateToAzimuth_Received)
 
 # CAMERA COMMANDS
 
@@ -80,10 +80,10 @@ def CameraPan_Received(command: Command):
     payload: st.ParamMap = command.payload
     az = payload.GetParam(st.VarType.double, "Azimuth")
     el = payload.GetParam(st.VarType.double, "Elevation")
-    en_behavior.CameraPan(az, el)
-    en_behavior.CompleteCommand("CameraPan", st.ParamMap())
+    #en_behavior.CameraPan(az, el)
+    #en_behavior.CompleteCommand("CameraPan", st.ParamMap())
 
-en_behavior.OnCommandReceived("CameraPan", CameraPan_Received)
+#en_behavior.OnCommandReceived("CameraPan", CameraPan_Received)
 
 # Reaction to camera capture completing
 def On_CameraCapDone( orig_command: Command,
@@ -104,16 +104,16 @@ def On_CameraCapDone( orig_command: Command,
     # en_behavior.CompleteCommand("CaptureImage", payload)
 
 # CaptureImage command handling
-def CaptureImage_Received(command: Command):
-    st.OnScreenLogMessage("Debug: CaptureImage_Received", "Entity Behavior", st.Severity.Warning)
-    payload: st.ParamMap = command.payload
-    exposure = payload.GetParam(st.VarType.double, "Exposure")
-    capture_id = en_behavior.CameraCapture(exposure)
-    st.logger_warn(f"Debug: CaptureImage_Received capture_id {capture_id}")
-    st.OnImageReceived(capture_id, lambda capturedImage: On_CameraCapDone(command, capture_id, capturedImage))
-    st.logger_warn("Debug: CaptureImage_Received ended")
+#def CaptureImage_Received(command: Command):
+    #st.OnScreenLogMessage("Debug: CaptureImage_Received", "Entity Behavior", st.Severity.Warning)
+    #payload: st.ParamMap = command.payload
+    #exposure = payload.GetParam(st.VarType.double, "Exposure")
+    #capture_id = en_behavior.CameraCapture(exposure)
+    #st.logger_warn(f"Debug: CaptureImage_Received capture_id {capture_id}")
+    #st.OnImageReceived(capture_id, lambda capturedImage: On_CameraCapDone(command, capture_id, capturedImage))
+    #st.logger_warn("Debug: CaptureImage_Received ended")
 
-en_behavior.OnCommandReceived("CaptureImage", CaptureImage_Received)
+#en_behavior.OnCommandReceived("CaptureImage", CaptureImage_Received)
 
 #######################
 ##  Simulation Loop  ##

@@ -20,7 +20,7 @@ import API.SurfaceMovement as SM
 en: st.Entity = st.GetThisSystem().GetParam(st.VarType.entityRef, "Entity")
 planet: st.Entity = st.GetThisSystem().GetParam(st.VarType.entityRef, "Planet")
 mover = SM.SurfaceMover(en, planet)
-en_behavior = EB.EntityBehavior(en)
+#en_behavior = EB.EntityBehavior(en)
 
 ##############################
 ##  Move behaviors for LTV  ##

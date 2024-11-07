@@ -1507,7 +1507,8 @@
         "#Required": {
           "Name": "PowerAssembly",
           "Type": "Assembly",
-          "Systems": []
+          "Systems": [],
+          "Active": false
         },
         "#Assembly": {
           "IsRoot": true,

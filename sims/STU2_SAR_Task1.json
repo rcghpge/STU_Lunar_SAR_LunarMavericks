@@ -340,7 +340,7 @@
           "Scale": 1,
           "RenderFar": true
         },
-        "Location": [ "doubleV3", -12815.0, -12611.0, -1739202.0 ],
+        "Location": [ "doubleV3", -12805.0, -12611.0, -1739202.0 ],
         "Rotation": [ "doubleV4", -0.999724, -0.0001904, 0.0218141, 0.0087245 ],
         "Velocity": [ "doubleV3", 0.0, 0.0, 0.0 ],
         "AngVelocity": [ "doubleV3", 0.0, 0.0, 0.0 ],

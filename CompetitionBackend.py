@@ -31,7 +31,7 @@ planet: st.Entity = st.GetThisSystem().GetParam(st.VarType.entityRef, "Planet")
 # mover_LTV2 = SM.SurfaceMover(LTV2, planet)
 
 charging_station: st.Entity = st.GetSimEntity().GetParam(st.VarType.entityRef, "ChargingStation")
-power_assembly: st.Entity = st.GetSimEntity().GetParam(st.VarType.entityRef, "PowerAssembly")
+#power_assembly: st.Entity = st.GetSimEntity().GetParam(st.VarType.entityRef, "PowerAssembly")
 
 #######################
 ##  Simulation Loop  ##
@@ -62,15 +62,15 @@ while not exit_flag:
                     "Tank1_EVA1", 
                     "Tank1_EVA2"]
         
-        for edge in edge_list:
-            en_from = power_assembly.GetParam(st.VarType.entityRef, ["#Assembly", "Edges", edge, "From"])
-            en_to = power_assembly.GetParam(st.VarType.entityRef, ["#Assembly", "Edges", edge, "To"])
-            if en_from == charging_station and en_to == en:
+        #for edge in edge_list:
+            #en_from = power_assembly.GetParam(st.VarType.entityRef, ["#Assembly", "Edges", edge, "From"])
+            #en_to = power_assembly.GetParam(st.VarType.entityRef, ["#Assembly", "Edges", edge, "To"])
+            #if en_from == charging_station and en_to == en:
                 # Distance check
-                if ((en_xy.x - charging_xy.x) ** 2 + (en_xy.y - charging_xy.y) ** 2) < CHARGING_RADIUS_M ** 2:
-                    power_assembly.SetParam(st.VarType.bool, ["#Assembly", "Edges", edge, "IsActive"], True)
-                else:
-                    power_assembly.SetParam(st.VarType.bool, ["#Assembly", "Edges", edge, "IsActive"], False)
+                #if ((en_xy.x - charging_xy.x) ** 2 + (en_xy.y - charging_xy.y) ** 2) < CHARGING_RADIUS_M ** 2:
+                    #power_assembly.SetParam(st.VarType.bool, ["#Assembly", "Edges", edge, "IsActive"], True)
+                #else:
+                    #power_assembly.SetParam(st.VarType.bool, ["#Assembly", "Edges", edge, "IsActive"], False)
 
     ### Sim end condition checking ###
     # Check whether the challenge end condition has been met

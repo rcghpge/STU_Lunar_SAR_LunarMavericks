@@ -278,7 +278,7 @@
       "Beacon3": [ "EntityRef", "Beacon3" ],
       "EVA1": [ "EntityRef", "EVA1" ],
       "EVA2": [ "EntityRef", "EVA2" ],
-      "Camera": [ "EntityRef", "Camera" ],
+      "Camera": [ "EntityRef", "Spectator1" ],
       "Habitat": [ "EntityRef", "Habitat" ],
       "MoonInertialFrame": [ "EntityRef", "Moon_Inertial" ],
       "Planet": [ "EntityRef", "Moon" ],

@@ -84,8 +84,8 @@ LTV1_task_graph.add_task(move_2, ["Move1"])
 camera_1 = TG.Task("CamerPan", Command_CameraPan(LTV1, 12, 15, "CameraPan"))
 LTV1_task_graph.add_task(camera_1, ["Move2"])
 
-camera_2 = TG.Task("CamerCapture", Command_CaptureImage(LTV1, 4, "CameraCapture"))
-LTV1_task_graph.add_task(camera_2, ["CameraPan"])
+#camera_2 = TG.Task("CamerCapture", Command_CaptureImage(LTV1, 4, "CameraCapture"))
+#LTV1_task_graph.add_task(camera_2, ["CameraPan"])
 
 move_3 = TG.Task("Move3", Command_MoveToCoord(LTV1, waypoint_3, "Move3"))
 LTV1_task_graph.add_task(move_3, ["CameraCapture"])

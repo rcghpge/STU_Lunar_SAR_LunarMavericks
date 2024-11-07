@@ -340,7 +340,7 @@
         "ConstrainZAxisToPlanet": true,
         "MovementSpeed": 250.0,
         "NoClip": false,
-        "Height": 10.0,
+        "Height": 10.0
       },
       {
         "#Required": {

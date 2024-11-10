@@ -410,7 +410,7 @@
           "IsRoot": false,
           "Subparts": {
             "Battery": {
-              "Source_Path": "SharedData/SCAssets/402_Springs21/Rover_Battery.json",
+              "Source_Path": "SharedData/SCAssets/Basic/EmptyEntity.json",
               "Attachment": "Fixed",
               "Rel_Location": [ "doubleV3", 0.0, 0.0, 0.0 ],
               "Rel_Rotation": [ "doubleV4", 0.0, 0.0, 0.0, 1.0 ],

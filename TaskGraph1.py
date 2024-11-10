@@ -1,3 +1,17 @@
+# THIS COMMENT LINE SHOULD BE THE FIRST LINE OF THE FILE
+# DON'T CHANGE ANY OF THE BELOW; NECESSARY FOR JOINING SIMULATION
+import os, sys, time, datetime, traceback
+import spaceteams as st
+def custom_exception_handler(exctype, value, tb):
+    error_message = "".join(traceback.format_exception(exctype, value, tb))
+    st.logger_fatal(error_message)
+    exit(1)
+sys.excepthook = custom_exception_handler
+st.connect_to_sim(sys.argv)
+import numpy as np
+# DON'T CHANGE ANY OF THE ABOVE; NECESSARY FOR JOINING SIMULATION
+#################################################################
+
 from API.STU_Common import *
 import API.MissionManagerFuncs as MM
 import API.EntityTelemetry as ET

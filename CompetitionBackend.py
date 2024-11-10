@@ -24,9 +24,9 @@ mm = MM.MissionManager()
 sim_start_time: st.timestamp = st.SimGlobals_SimClock_GetTimeNow()
 
 # Checking if the simulation is running
-if not st.SimGlobals_IsSimRunning():
-    st.OnScreenLogMessage("Simulation is not running; exiting script.", "Competition Backend", st.Severity.Error)
-    exit(1)
+#if not st.SimGlobals_IsSimRunning():
+    #st.OnScreenLogMessage("Simulation is not running; exiting script.", "Competition Backend", st.Severity.Error)
+    #exit(1)
 
 # Get the current system and all entities
 st.GetThisSystem()

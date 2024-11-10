@@ -75,10 +75,22 @@ class MissionManager:
         self.log_event("Mission Summary Generated", severity=st.Severity.Info)
         return summary
 
-    def OnCommandComplete(self, entity, command):
+    def OnCommandComplete(self, entity, command, callback=None):
         """Handles the completion of a command for a given entity."""
         self.log_event(f"{entity.getName()} completed command: {command}", severity=st.Severity.Info)
-        
+
+        # Execute callback if provided
+        if callback:
+            callback()
+
         # Update the entity state upon command completion, e.g., check if target is reached.
         if command == "MoveToTarget":
             self.entity_reached_target(entity)
+
+    def OnCommandFail(self, entity, command, callback=None):
+        """Handles the failure of a command for a given entity."""
+        self.log_event(f"{entity.getName()} failed to execute command: {command}", severity=st.Severity.Warning)
+
+        # Execute callback if provided
+        if callback:
+            callback()

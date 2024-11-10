@@ -55,13 +55,14 @@ def MoveToCoord_LTV1_Complete(payload: st.ParamMap):
     st.OnScreenLogMessage("MoveToCoord command complete.", "Surface Movement", st.Severity.Info)
     LTV1_TaskComplete(payload)
 
-mm.OnCommandComplete(LTV1, "MoveToCoord", MoveToCoord_LTV1_Complete)
+mm.OnCommandComplete(LTV1, "MoveToCoord", callback=MoveToCoord_LTV1_Complete)
 
 def MoveToCoord_LTV1_Failed(payload: st.ParamMap):
     st.OnScreenLogMessage("MoveToCoord command failed.", "Surface Movement", st.Severity.Info)
     LTV1_TaskFail(payload)
 
 mm.OnCommandFail(LTV1, "MoveToCoord", MoveToCoord_LTV1_Failed)
+
 
 ################################
 ##  Mission Manager Commands  ##

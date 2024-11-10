@@ -273,6 +273,7 @@
       "LTV1": [ "EntityRef", "LTV1" ],
       "LTV2": [ "EntityRef", "LTV2" ],
       "ProcessingFacility": [ "EntityRef", "ProcessingFacility" ],
+      "PowerAssembly": ["EntityRef", "PowerAssemblyEntityName"],
       "Beacon1": [ "EntityRef", "Beacon1" ],
       "Beacon2": [ "EntityRef", "Beacon2" ],
       "Beacon3": [ "EntityRef", "Beacon3" ],

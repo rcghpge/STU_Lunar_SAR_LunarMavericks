@@ -731,7 +731,7 @@
               "PowerType": "Sink",
               "Power_Consumption": 1000.0,
               "IsPowered": true,
-              "PowerRatio": 0,
+              "PowerRatio": 1,
               "MinPowerReq": 200.0
             },
             "Scanner": ["EntityRef", "LTV1_Scanner"],

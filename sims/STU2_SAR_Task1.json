@@ -642,7 +642,26 @@
         "#Required": {
           "Name": "LTV1",
           "Type": "FromTemplate",
-          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement" ]
+          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement" ],
+          "Parameters": {
+            "EntityBehavior": "EntityBehavior_LTV1",
+            "EntityTelemetry": "EntityTelemetry_LTV1",
+            "Camera": [ "EntityRef", "CameraEntityName" ],
+            "CompetitionBackend": "CompetitionBackend",
+            "PowerSolver": "AdvRes_Power",
+            "OxygenSolver": "AdvRes_Oxygen",
+            "SurfaceCommunications": "SurfaceCommunications",
+            "Scanner": "LTV1_Scanner",
+            "Battery": "LTV1_Battery",
+            "Wheel1": "LTV_Wheel1",
+            "Wheel2": "LTV_Wheel2",
+            "Wheel3": "LTV_Wheel3",
+            "Wheel4": "LTV_Wheel4",
+            "LTV_BinLid1": "LTV_BinLid1",
+            "LTV_BinLid2": "LTV_BinLid2",
+            "LTV_BinLid3": "LTV_BinLid3",
+            "LTV_BinLid4": "LTV_BinLid4"
+          }
         },
         "#FromTemplate": {
           "Source_Path": "SharedData/SCAssets/LoadableMeshes/LTV/LTV_Body.json",

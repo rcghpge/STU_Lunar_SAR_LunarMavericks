@@ -11,13 +11,13 @@ class MissionManager:
         self.event_log = []
         self.entity_states = {}
         self.resources = {}
-    
+
     def start_mission(self):
         """Starts the mission and records the start time."""
         self.start_time = datetime.datetime.now()
         self.status = "in progress"
         self.log_event("Mission started at " + str(self.start_time), severity=st.Severity.Info)
-    
+
     def end_mission(self):
         """Ends the mission and records the end time."""
         self.end_time = datetime.datetime.now()
@@ -74,3 +74,11 @@ class MissionManager:
         }
         self.log_event("Mission Summary Generated", severity=st.Severity.Info)
         return summary
+
+    def OnCommandComplete(self, entity, command):
+        """Handles the completion of a command for a given entity."""
+        self.log_event(f"{entity.getName()} completed command: {command}", severity=st.Severity.Info)
+        
+        # Update the entity state upon command completion, e.g., check if target is reached.
+        if command == "MoveToTarget":
+            self.entity_reached_target(entity)

@@ -445,7 +445,7 @@
           "Edges": {
             "PowerSupply": {
               "From": [ "EntityRef", "PowerGenerator" ],
-              "To": [ "EntityRef", "Battery" ],
+              "To": [ "EntityRef", "LTV1_Battery" ],
               "Solver": "AdvRes_Power",
               "Priority": 1,
               "IsActive": false

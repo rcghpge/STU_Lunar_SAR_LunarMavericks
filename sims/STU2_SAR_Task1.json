@@ -273,7 +273,7 @@
       "LTV1": [ "EntityRef", "LTV1" ],
       "LTV2": [ "EntityRef", "LTV2" ],
       "ProcessingFacility": [ "EntityRef", "ProcessingFacility" ],
-      "PowerAssembly": ["EntityRef", "PowerAssemblyEntityName"],
+      "PowerAssembly": ["EntityRef", "PowerAssembly"],
       "Beacon1": [ "EntityRef", "Beacon1" ],
       "Beacon2": [ "EntityRef", "Beacon2" ],
       "Beacon3": [ "EntityRef", "Beacon3" ],
@@ -399,6 +399,71 @@
           }
         }
       },
+      {
+        "#Required": {
+          "Name": "PowerAssembly",
+          "Type": "Assembly",
+          "Systems": ["AdvRes_Power"],
+          "Active": true
+        },
+        "#Assembly": {
+          "IsRoot": true,
+          "Subparts": {
+            "Battery": {
+              "Source_Path": "SharedData/SCAssets/Basic/EmptyEntity.json",
+              "Attachment": "Fixed",
+              "Rel_Location": [ "doubleV3", 0.0, 0.0, 0.0 ],
+              "Rel_Rotation": [ "doubleV4", 0.0, 0.0, 0.0, 1.0 ],
+              "Scale": [ "doubleV3", 1.0, 1.0, 1.0 ],
+              "Socket": [ "int32", -1 ],
+              "ParamOverrides": {
+                "Name": "Battery",
+                "Resources": {
+                  "currentPower": 1500000.0,
+                  "PowerType": "Storage",
+                  "Maximum_Power_Storage": 2000000.0
+                }
+              }
+            },
+            "PowerGenerator": {
+              "Source_Path": "SharedData/SCAssets/Basic/EmptyEntity.json",
+              "Attachment": "Fixed",
+              "Rel_Location": [ "doubleV3", 2.0, 0.0, 0.0 ],
+              "Rel_Rotation": [ "doubleV4", 0.0, 0.0, 0.0, 1.0 ],
+              "Scale": [ "doubleV3", 1.0, 1.0, 1.0 ],
+              "Socket": [ "int32", -1 ],
+              "ParamOverrides": {
+                "Name": "PowerGenerator",
+                "Resources": {
+                  "currentPower": 0,
+                  "PowerType": "Source",
+                  "Power_Generation": 100000.0
+                }
+              }
+            }
+          },
+          "Edges": {
+            "PowerSupply": {
+              "From": [ "EntityRef", "PowerGenerator" ],
+              "To": [ "EntityRef", "Battery" ],
+              "Solver": "AdvRes_Power",
+              "Priority": 1,
+              "IsActive": true
+            }
+          }
+        },
+        "Dynamics": {
+          "PropagationType": "ComputeAcceleration",
+          "GenerateCollider": false,
+          "Mass": 1.0
+        },
+        "Location": [ "doubleV3", -12800.0, -12600.0, -1739200.0 ],
+        "Velocity": [ "doubleV3", 0.0, 0.0, 0.0 ],
+        "Acceleration": [ "doubleV3", 0.0, 0.0, 0.0 ],
+        "Rotation": [ "doubleV4", 0.0, 0.0, 0.0, 1.0 ],
+        "AngVelocity": [ "doubleV3", 0.0, 0.0, 0.0 ],
+        "AngAcceleration": [ "doubleV3", 0.0, 0.0, 0.0 ]
+      }      
       {
         "#Required": {
           "Name": "ProcessingFacility",

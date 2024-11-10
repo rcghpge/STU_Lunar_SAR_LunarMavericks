@@ -712,7 +712,7 @@
           "Parameters": {
             "EntityBehavior": "EntityBehavior_LTV1",
             "EntityTelemetry": "EntityTelemetry_LTV1",
-            "Camera": [ "EntityRef", "CameraEntityName" ],
+            "Camera": [ "EntityRef", "FrameExportCamera" ],
             "CompetitionBackend": "CompetitionBackend",
             "PowerSolver": "AdvRes_Power",
             "OxygenSolver": "AdvRes_Oxygen",

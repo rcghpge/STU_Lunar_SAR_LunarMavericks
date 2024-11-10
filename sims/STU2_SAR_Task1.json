@@ -13,7 +13,7 @@
     "Systems": [
       {
         "Nametag": "MissionManager",
-        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/ExampleMM_TaskGraphSimple.py",
+        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/TaskGraph1.py",
         "NOTE": "YOU CAN REPLACE Source WITH ANOTHER MISSION MANAGER PYTHON SYSTEM",
         "Type": "Python",
         "Active": true,

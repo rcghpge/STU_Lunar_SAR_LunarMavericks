@@ -23,6 +23,22 @@ mm = MM.MissionManager()
 # Initialize simulation start time
 sim_start_time: st.timestamp = st.SimGlobals_SimClock_GetTimeNow()
 
+# Checking if the simulation is running
+if not st.SimGlobals_IsSimRunning():
+    st.OnScreenLogMessage("Simulation is not running; exiting script.", "Competition Backend", st.Severity.Error)
+    exit(1)
+
+# Get the current system and all entities
+st.GetThisSystem()
+
+try:
+    power_assembly: st.Entity = st.GetSimEntity().GetParam(st.VarType.entityRef, "PowerAssembly")
+except RuntimeError:
+    power_assembly = None
+    st.OnScreenLogMessage("PowerAssembly parameter not found in SimEntity.", "CompetitionBackend", st.Severity.Warning)
+
+st.GetSimEntity()
+
 # Get all entities and the planet
 every_en = st.GetThisSystem().GetParamArray(st.VarType.entityRef, "Entities")
 planet: st.Entity = st.GetThisSystem().GetParam(st.VarType.entityRef, "Planet")

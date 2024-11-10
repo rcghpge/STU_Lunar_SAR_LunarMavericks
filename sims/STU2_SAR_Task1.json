@@ -416,8 +416,8 @@
               "Rel_Rotation": [ "doubleV4", 0.0, 0.0, 0.0, 1.0 ],
               "Scale": [ "doubleV3", 1.0, 1.0, 1.0 ],
               "Socket": [ "int32", -1 ],
+              "Name": "Battery",
               "ParamOverrides": {
-                "Name": "Battery",
                 "Resources": {
                   "currentPower": 1500000.0,
                   "PowerType": "Storage",
@@ -432,8 +432,8 @@
               "Rel_Rotation": [ "doubleV4", 0.0, 0.0, 0.0, 1.0 ],
               "Scale": [ "doubleV3", 1.0, 1.0, 1.0 ],
               "Socket": [ "int32", -1 ],
+              "Name": "PowerGenerator",
               "ParamOverrides": {
-                "Name": "PowerGenerator",
                 "Resources": {
                   "currentPower": 0,
                   "PowerType": "Source",
@@ -463,7 +463,7 @@
         "Rotation": [ "doubleV4", 0.0, 0.0, 0.0, 1.0 ],
         "AngVelocity": [ "doubleV3", 0.0, 0.0, 0.0 ],
         "AngAcceleration": [ "doubleV3", 0.0, 0.0, 0.0 ]
-      },      
+      },           
       {
         "#Required": {
           "Name": "ProcessingFacility",

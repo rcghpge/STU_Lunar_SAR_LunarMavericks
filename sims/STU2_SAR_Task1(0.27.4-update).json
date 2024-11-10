@@ -642,6 +642,7 @@
             "Dynamics": {
               "ResidentFrame": [ "EntityRef", "Moon" ]
             },
+            "Camera": ["EntityRef", "LTV1_Camera"],
             "HasComms": true,
             "Height": -0.05,
             "AlignToSurfaceNormal": true,

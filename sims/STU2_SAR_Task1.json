@@ -404,13 +404,13 @@
           "Name": "PowerAssembly",
           "Type": "Assembly",
           "Systems": ["AdvRes_Power"],
-          "Active": true
+          "Active": false
         },
         "#Assembly": {
-          "IsRoot": true,
+          "IsRoot": false,
           "Subparts": {
             "Battery": {
-              "Source_Path": "SharedData/SCAssets/Basic/EmptyEntity.json",
+              "Source_Path": "SharedData/SCAssets/402_Springs21/Rover_Battery.json",
               "Attachment": "Fixed",
               "Rel_Location": [ "doubleV3", 0.0, 0.0, 0.0 ],
               "Rel_Rotation": [ "doubleV4", 0.0, 0.0, 0.0, 1.0 ],
@@ -448,7 +448,7 @@
               "To": [ "EntityRef", "Battery" ],
               "Solver": "AdvRes_Power",
               "Priority": 1,
-              "IsActive": true
+              "IsActive": false
             }
           }
         },

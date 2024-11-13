@@ -13,7 +13,7 @@
     "Systems": [
       {
         "Nametag": "MissionManager",
-        "Source": "Local/Repos/STU_Competition2/ExampleMM_TaskGraphSimple.py",
+        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/ExampleMM_TaskGraphSimple.py",
         "NOTE": "YOU CAN REPLACE Source WITH ANOTHER MISSION MANAGER PYTHON SYSTEM",
         "Type": "Python",
         "Active": true,
@@ -25,7 +25,7 @@
       },
       {
         "Nametag": "EntityBehavior_LTV1",
-        "Source": "Local/Repos/STU_Competition2/EntityBehavior_LTV.py",
+        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
@@ -36,7 +36,7 @@
       },
       {
         "Nametag": "EntityBehavior_LTV2",
-        "Source": "Local/Repos/STU_Competition2/EntityBehavior_LTV.py",
+        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
@@ -55,7 +55,7 @@
       },
       {
         "Nametag": "CompetitionBackend",
-        "Source": "Local/Repos/STU_Competition2/CompetitionBackend.py",
+        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/CompetitionBackend.py",
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {

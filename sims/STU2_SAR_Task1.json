@@ -269,6 +269,7 @@
       "GraphicsFrame": [ "EntityRef", "Moon" ],
       "J2000Frame": [ "EntityRef", "SSB" ],
       "Pawn": [ "EntityRef", "Spectator1" ],
+      "PowerAssembly": [ "EntityRef", "AdvRes_Power" ],
       "ChargingStation": [ "EntityRef", "ChargingStation" ],
       "Habitat": [ "EntityRef", "Habitat" ],
       "MoonInertialFrame": [ "EntityRef", "Moon_Inertial" ],

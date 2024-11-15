@@ -13,7 +13,7 @@ import numpy as np
 #################################################################
 
 from API.STU_Common import *
-import API.MissionManagerFuncs as MM
+import API.MissionManagerFuncs2 as MM
 mm = MM.MissionManager()
 import API.EntityTelemetry as ET
 # ^ NECESSARY STU IMPORTS

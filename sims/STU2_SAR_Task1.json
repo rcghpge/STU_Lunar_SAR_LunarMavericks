@@ -691,6 +691,9 @@
             },
             "Scanner": ["EntityRef", "LTV1_Scanner"],
             "Battery": ["EntityRef", "LTV1_Battery"],
+            "Inst_Parameters": {
+              "Systems": ["EntityRef", "Battery"]
+            },
             "Camera": ["EntityRef", "LTV1_Camera"]
           }
         }

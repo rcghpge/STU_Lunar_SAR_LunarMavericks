@@ -18,7 +18,8 @@
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
-          "Entities": [ "array", "EntityRef", "LTV1", "LTV2" ],
+          "Entity": [ "array", "EntityRef", "LTV1", "LTV2", "EVA1", "EVA2", "ChargingStation", 
+          "ProcessingFacility", "Beacon1", "Beacon2", "Beacon3", "PowerAssembly" ],
           "Planet": [ "EntityRef", "Moon" ],
           "LoopFreqHz": 1000.0
         }
@@ -51,6 +52,7 @@
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
+          "LoopFreqHz": 1000.0
         }
       },
       {
@@ -61,7 +63,7 @@
         "Inst_Parameters": {
           "Entities": [ "array", "EntityRef", "LTV1", "LTV2" ],
           "Planet": [ "EntityRef", "Moon" ],
-          "LoopFreqHz": 500.0
+          "LoopFreqHz": 1000.0
         }
       },
       {
@@ -69,7 +71,7 @@
         "Source": "../AdvancedResourceSystems/PriorityPowerSolver/bin/PriorityPowerSolver.dll",
         "Type": "Normal",
         "Active": true,
-        "Frequency": 200.0,
+        "Frequency": 1000.0,
         "Inst_Parameters": {
           "Entities": [ "array", "EntityRef", "LTV1", "LTV2" ],
           "PowerAssembly": [ "EntityRef", "PowerAssembly" ],
@@ -131,6 +133,7 @@
         "FreqType":"Sim",
         "Frequency": 200.0,
         "Inst_Parameters": {
+          "LoopFreqHz": 1000.0,
           "Planet": [ "EntityRef", "Moon" ],
           "PlanetRadius_m": 1737400.0,
           "Datasets": [
@@ -155,6 +158,7 @@
         "FreqType":"Sim",
         "Frequency": 200.0,
         "Inst_Parameters": {
+          "LoopFreqHz": 1000.0,           
           "TestEntities": [ "array", "EntityRef", "LTV1", "LTV2" ],
           "CommsNetwork": [ "array", "EntityRef", "Beacon1", "Beacon2", "Beacon3", "Habitat" ],
           "Planet": [ "EntityRef", "Moon" ],

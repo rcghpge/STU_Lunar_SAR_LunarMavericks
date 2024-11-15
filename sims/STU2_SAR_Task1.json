@@ -67,7 +67,7 @@
       {
         "Nametag": "AdvRes_Power",
         "Source": "../AdvancedResourceSystems/PriorityPowerSolver/bin/PriorityPowerSolver.dll",
-        "Type": "C++",
+        "Type": "Normal",
         "Active": true,
         "Frequency": 100.0,
         "Inst_Parameters": {

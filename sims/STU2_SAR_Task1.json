@@ -692,7 +692,7 @@
             "Scanner": ["EntityRef", "LTV1_Scanner"],
             "Battery": ["EntityRef", "LTV1_Battery"],
             "Inst_Parameters": {
-              "Systems": ["EntityRef", "Battery"]
+              "Systems": ["EntityRef", "Battery_LTV1"]
             },
             "Camera": ["EntityRef", "LTV1_Camera"]
           }
@@ -1572,14 +1572,14 @@
               "To": [ "EntityRef", "LTV1" ],
               "Solver": "AdvRes_Power",
               "Priority": 2,
-              "IsActive": true
+              "IsActive": false
             },
             "Battery_LTV2": {
               "From": [ "EntityRef", "LTV2_Battery" ],
               "To": [ "EntityRef", "LTV2" ],
               "Solver": "AdvRes_Power",
               "Priority": 2,
-              "IsActive": true
+              "IsActive": false
             },
             "ChargingStation_EVA1": {
               "From": [ "EntityRef", "ChargingStationGenerator" ],

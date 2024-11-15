@@ -49,7 +49,7 @@
         "Nametag": "ParamWrangler",
         "Source": "TestingTools/ParamWrangler.py",
         "Type": "Python",
-        "Active": false,
+        "Active": true,
         "Inst_Parameters": {
         }
       },
@@ -70,6 +70,7 @@
         "Type": "Normal",
         "Frequency": 100.0,
         "Inst_Parameters": {
+          "Entities": [ "array", "EntityRef", "LTV1", "LTV2" ] 
         }
       },
       {

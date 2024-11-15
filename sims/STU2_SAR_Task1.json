@@ -69,10 +69,10 @@
         "Source": "../AdvancedResourceSystems/PriorityPowerSolver/bin/PriorityPowerSolver.dll",
         "Type": "Normal",
         "Active": true,
-        "Frequency": 1000.0,
+        "Frequency": 200.0,
         "Inst_Parameters": {
           "Entities": [ "array", "EntityRef", "LTV1", "LTV2" ],
-          "PowerAssembly": [ "EntityRef", "AdvRes_Power" ],
+          "PowerAssembly": [ "EntityRef", "PowerAssembly" ],
           "ChargingStation": [ "EntityRef", "ChargingStation" ],
           "Planet": [ "EntityRef", "Moon" ], 
           "PlanetRadius_m": 1737400.0

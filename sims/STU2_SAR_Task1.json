@@ -1524,7 +1524,7 @@
               "To": [ "EntityRef", "LTV1_Battery" ],
               "Solver": "AdvRes_Power",
               "Priority": 2,
-              "IsActive": false
+              "IsActive": true
             },
             "ChargingStation_LTV2": {
               "From": [ "EntityRef", "ChargingStationGenerator" ],

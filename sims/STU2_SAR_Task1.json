@@ -68,6 +68,7 @@
         "Nametag": "AdvRes_Power",
         "Source": "../AdvancedResourceSystems/PriorityPowerSolver/bin/PriorityPowerSolver",
         "Type": "Normal",
+        "Active": true,
         "Frequency": 100.0,
         "Inst_Parameters": {
           "Entities": [ "array", "EntityRef", "LTV1", "LTV2" ] 

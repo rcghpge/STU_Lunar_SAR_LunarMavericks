@@ -69,12 +69,13 @@
         "Source": "../AdvancedResourceSystems/PriorityPowerSolver/bin/PriorityPowerSolver.dll",
         "Type": "Normal",
         "Active": true,
-        "Frequency": 100.0,
+        "Frequency": 1000.0,
         "Inst_Parameters": {
           "Entities": [ "array", "EntityRef", "LTV1", "LTV2" ],
           "PowerAssembly": [ "EntityRef", "AdvRes_Power" ],
           "ChargingStation": [ "EntityRef", "ChargingStation" ],
-          "Planet": [ "EntityRef", "Moon" ] 
+          "Planet": [ "EntityRef", "Moon" ], 
+          "PlanetRadius_m": 1737400.0
         }
       },
       {
@@ -274,7 +275,7 @@
       "GraphicsFrame": [ "EntityRef", "Moon" ],
       "J2000Frame": [ "EntityRef", "SSB" ],
       "Pawn": [ "EntityRef", "Spectator1" ],
-      "PowerAssembly": [ "EntityRef", "PowerAssembly" ],
+      "PowerAssembly": [ "EntityRef", "AdvRes_Power" ],
       "ChargingStation": [ "EntityRef", "ChargingStation" ],
       "Habitat": [ "EntityRef", "Habitat" ],
       "MoonInertialFrame": [ "EntityRef", "Moon_Inertial" ],

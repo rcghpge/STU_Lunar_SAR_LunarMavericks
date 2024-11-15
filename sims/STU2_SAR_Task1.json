@@ -66,12 +66,15 @@
       },
       {
         "Nametag": "AdvRes_Power",
-        "Source": "../AdvancedResourceSystems/PriorityPowerSolver/bin/PriorityPowerSolver",
+        "Source": "../AdvancedResourceSystems/PriorityPowerSolver/bin/PriorityPowerSolver.dll",
         "Type": "C++",
         "Active": true,
         "Frequency": 100.0,
         "Inst_Parameters": {
-          "Entities": [ "array", "EntityRef", "LTV1", "LTV2" ] 
+          "Entities": [ "array", "EntityRef", "LTV1", "LTV2" ],
+          "PowerAssembly": [ "EntityRef", "AdvRes_Power" ],
+          "ChargingStation": [ "EntityRef", "ChargingStation" ],
+          "Planet": [ "EntityRef", "Moon" ] 
         }
       },
       {

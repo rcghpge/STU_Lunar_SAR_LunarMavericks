@@ -347,6 +347,24 @@
       },
       {
         "#Required": {
+          "Name": "LTV1_CamScanner",
+          "Type": "CamScanner",
+          "Systems": ["ParamWrangler"]
+        },
+        "Dynamics": {
+          "PropagationType": "ComputeAcceleration",
+          "GenerateCollider": false,
+          "Mass": 1.0,
+          "ResidentFrame": [ "EntityRef", "LTV1" ]
+        },
+        "Graphics": {
+          "RenderFar": true,
+          "Scale": 1.0
+        },
+        "Location": [ "doubleV3", 0.5, 0, 2.2 ]
+      },
+      {
+        "#Required": {
           "Name": "LTV_Wheel1",
           "Type": "FromTemplate",
           "Systems": []

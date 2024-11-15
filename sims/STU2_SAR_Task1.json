@@ -631,7 +631,8 @@
         "#Required": {
           "Name": "LTV1",
           "Type": "FromTemplate",
-          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement" ]
+          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement" ],
+          "Camera": ["EntityRef", "LTV1_Camera"]
         },
         "#FromTemplate": {
           "Source_Path": "SharedData/SCAssets/LoadableMeshes/LTV/LTV_Body.json",

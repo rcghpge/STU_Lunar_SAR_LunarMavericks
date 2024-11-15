@@ -678,7 +678,8 @@
               "MinPowerReq": 200.0
             },
             "Scanner": ["EntityRef", "LTV1_Scanner"],
-            "Battery": ["EntityRef", "LTV1_Battery"]
+            "Battery": ["EntityRef", "LTV1_Battery"],
+            "Camera": ["EntityRef", "LTV1_Camera"]
           }
         }
       },

@@ -354,7 +354,7 @@
         "#Required": {
           "Name": "LTV1_CamScanner",
           "Type": "Camera",
-          "Systems": []
+          "Systems": ["ParamWrangler"]
         },
         "Dynamics": {
           "PropagationType": "ComputeAcceleration",

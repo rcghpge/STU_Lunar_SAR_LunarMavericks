@@ -17,7 +17,9 @@ import API.MissionManagerFuncs as MM
 mm = MM.MissionManager()
 import API.EntityTelemetry as ET
 # ^ NECESSARY STU IMPORTS
-
+from API.SurfaceMovement import SurfaceMover
+from API.STU_Common import XY, Command, CoordToXY
+from API.EntityBehaviorFuncs import Command_MoveToCoord, Command_RotateToAzimuth, Command_CaptureImage, Command_CameraPan
 import TaskGraph as TG
 import cv2 # for camera pixel work
 
@@ -32,6 +34,7 @@ LTV2: st.Entity = entities[1]
 Scout1: st.Entity = entities[2]
 Scout2: st.Entity = entities[3]
 
+# TaskGraphs for each entity
 LTV1_task_graph = TG.TaskGraph()
 LTV2_task_graph = TG.TaskGraph()
 Scout1_task_graph = TG.TaskGraph()
@@ -164,6 +167,40 @@ Scout1_task_graph.add_task(Scout1_move1, [])
 
 Scout2_move1 = TG.Task("Move1", Command_MoveToCoord(Scout2, waypoint_2, "Move1"))
 Scout2_task_graph.add_task(Scout2_move1, [])
+
+# EXAMPLE CODE FOR ADDING PLANNED IMAGE-CAPTURE TASKS
+# Define waypoints and exposure time
+waypoint_1 = (10, 20)  # Example coordinates
+waypoint_2 = (30, 40)  # Example coordinates
+exposure = 15.0
+
+# Define tasks for LTV1
+move_1 = TG.Task("Move1", Command_MoveToCoord(LTV1, waypoint_1, "Move1"))
+LTV1_task_graph.add_task(move_1, [])
+
+move_2 = TG.Task("Move2", Command_MoveToCoord(LTV1, waypoint_2, "Move2"))
+LTV1_task_graph.add_task(move_2, ["Move1"])
+
+img_cap1 = TG.Task("Capture1", Command_CaptureImage(LTV1, exposure, "Capture1"))
+LTV1_task_graph.add_task(img_cap1, ["Move1"])
+
+img_cap2 = TG.Task("Capture2", Command_CaptureImage(LTV1, exposure, "Capture2"))
+LTV1_task_graph.add_task(img_cap2, ["Move2"])
+
+cam_turn = TG.Task("camturn", Command_CameraPan(LTV1, 60.0, 11.0, "camturn"))
+LTV1_task_graph.add_task(cam_turn, ["Capture2"])
+
+img_cap3 = TG.Task("Capture3", Command_CaptureImage(LTV1, exposure, "Capture3"))
+LTV1_task_graph.add_task(img_cap3, ["camturn"])
+
+# Ensure all tasks are added to the task graph
+LTV1_task_graph.finalize()
+
+# Error handling for task execution
+try:
+    LTV1_task_graph.execute()
+except Exception as e:
+    st.OnScreenLogMessage(f"Error executing task graph: {e}", "ExampleMM_Task2", st.Severity.Error)
 
 #################################
 ##  Simulation Initialization  ##

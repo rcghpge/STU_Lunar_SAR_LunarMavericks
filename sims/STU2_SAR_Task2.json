@@ -29,7 +29,7 @@
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
-          "Entity": [ "EntityRef", "LTV1" ],
+          "Entity": [ "EntityRef", "LTV1", "LTV1Marker" ],
           "Planet": [ "EntityRef", "Moon" ],
           "LoopFreqHz": 1000.0
         }
@@ -40,7 +40,7 @@
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
-          "Entity": [ "EntityRef", "LTV2" ],
+          "Entity": [ "EntityRef", "LTV2", "LTV2Marker" ],
           "Planet": [ "EntityRef", "Moon" ],
           "LoopFreqHz": 1000.0
         }
@@ -51,7 +51,7 @@
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
-          "Entity": [ "EntityRef", "ScoutRover1" ],
+          "Entity": [ "EntityRef", "ScoutRover1", "ScoutRover1Marker" ],
           "Planet": [ "EntityRef", "Moon" ],
           "LoopFreqHz": 1000.0
         }
@@ -62,7 +62,7 @@
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
-          "Entity": [ "EntityRef", "ScoutRover2" ],
+          "Entity": [ "EntityRef", "ScoutRover2", "ScoutRover2Marker" ],
           "Planet": [ "EntityRef", "Moon" ],
           "LoopFreqHz": 1000.0
         }

@@ -11,6 +11,10 @@ st.connect_to_sim(sys.argv)
 import numpy as np
 # DON'T CHANGE ANY OF THE ABOVE; NECESSARY FOR JOINING SIMULATION
 #################################################################
+# Issues importing Tensorflow in the simulation environment
+# Add the path to TensorFlow
+tensorflow = r'c:\Users\PC\Desktop\tensorflow'
+sys.path.append(tensorflow)
 
 from API.STU_Common import Command, _commandID_Str
 import API.EntityBehaviorFuncs as EB

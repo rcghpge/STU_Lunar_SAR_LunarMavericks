@@ -15,7 +15,7 @@
                 "Nametag": "ParamWrangler",
                 "Source": "TestingTools/ParamWrangler.py",
                 "Type": "Python",
-                "Active": false,
+                "Active": true,
                 "Inst_Parameters": {}
             },
             {

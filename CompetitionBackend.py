@@ -26,6 +26,17 @@ every_en = st.GetThisSystem().GetParamArray(st.VarType.entityRef, "Entities")
 # Get planet
 planet: st.Entity = st.GetThisSystem().GetParam(st.VarType.entityRef, "Planet")
 
+
+# Define entities
+LTV1 = every_en[0]
+LTV2 = every_en[1]
+ScoutRover1 = every_en[2]
+ScoutRover2 = every_en[3]
+#EVA1 = every_en[4]
+#EVA2 = every_en[5]
+
+# Get all entities participating in the search
+
 # Set up "mover" objects for all entities
 mover_LTV1 = SM.SurfaceMover(LTV1, planet)
 mover_LTV2 = SM.SurfaceMover(LTV2, planet)

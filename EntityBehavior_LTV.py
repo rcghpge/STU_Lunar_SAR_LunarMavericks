@@ -16,6 +16,8 @@ from API.STU_Common import Command, _commandID_Str
 import API.EntityBehaviorFuncs as EB
 import API.EntityTelemetry as ET
 import API.SurfaceMovement as SM
+import tensorflow as tf
+from API.STU_Common import *
 
 en: st.Entity = st.GetThisSystem().GetParam(st.VarType.entityRef, "Entity")
 planet: st.Entity = st.GetThisSystem().GetParam(st.VarType.entityRef, "Planet")
@@ -120,27 +122,51 @@ DEFAULT_ENTITY_RADIUS_M = 0.3
 
 last_comm_coord: st.PlanetUtils.Coord = mover.GetCurrentCoord()
 
-# Keep the sim running (if this loop exits early for any reason, the sim will end)
+# Hypothetical pre-trained model for obstacle detection
+class ObstacleDetectionModel(tf.keras.Model):
+    def __init__(self):
+        super(ObstacleDetectionModel, self).__init__()
+        # Define your model architecture here
+        self.dense1 = tf.keras.layers.Dense(128, activation='relu')
+        self.dense2 = tf.keras.layers.Dense(64, activation='relu')
+        self.output_layer = tf.keras.layers.Dense(1, activation='sigmoid')
+
+    def call(self, inputs):
+        x = self.dense1(inputs)
+        x = self.dense2(x)
+        return self.output_layer(x)
+# Load the pre-trained model
+model = ObstacleDetectionModel()
+model.load_weights('path_to_pretrained_model.h5')
+
+# Preprocessing function
+def preprocess_lidar_data(rel_vecs, radii):
+    # Convert LIDAR data to a suitable format for the model
+    data = np.hstack((rel_vecs, np.expand_dims(radii, axis=1)))
+    data = tf.convert_to_tensor(data, dtype=tf.float32)
+    return data
+#########################################
+# Implementing a TensorFlow SAR Model
+# Main loop
 exit_flag = False
 while not exit_flag:
-    # Default behavior for losing comms is to go back to where we last had comms
-    if en.GetParam(st.VarType.bool, "HasComms"):
-        last_comm_coord: st.PlanetUtils.Coord = mover.GetCurrentCoord()
-    else:
-        mover.TurnAndMoveToCoord(last_comm_coord)
-        st.OnScreenLogMessage(f"Entity {en.getName()} comm line of sight occluded; Moving back to last point with comm", 
-                            "LTV Behavior", st.Severity.Info)
+    LoopFreqHz = st.GetThisSystem().GetParam(st.VarType.double, "LoopFreqHz")
+    time.sleep(1.0 / LoopFreqHz)
 
+    # Get LIDAR data
     rel_vecs, radii, had_comms = ET.GetLidarObstacles(en)
-    # st.logger_info("Lidar info: " + str(np.asarray(rel_vecs)) + ", " + str(np.asarray(radii)) + ", " + str(had_comms))
-    
-    ######################
-    # WIP obstacle hit detection - TBD exact behavior
+
+    # Preprocess LIDAR data
+    lidar_data = preprocess_lidar_data(rel_vecs, radii)
+
+    # Run the model to detect obstacles
+    obstacles = model(lidar_data)
+
+    # Process the model's output
     ran_into_something_thistime = False
-    for i in range(len(rel_vecs)):
-        rel_vec = rel_vecs[i]
+    for i in range(len(obstacles)):
+        distance_away = obstacles[i].numpy()
         obstacle_radius = radii[i]
-        distance_away = np.linalg.norm(rel_vec)
         separation = distance_away - DEFAULT_ENTITY_RADIUS_M - obstacle_radius
         if separation < 0.0:
             ran_into_something_thistime = True
@@ -151,10 +177,49 @@ while not exit_flag:
         if ranIntoSomething:
             st.OnScreenLogMessage(f"Entity {en.getName()} is no longer running into an obstacle.", "LTV Behavior", st.Severity.Warning)
         ranIntoSomething = False
-    #######################
 
     # Loop delay so we don't use too much CPU resources
     LoopFreqHz = st.GetThisSystem().GetParam(st.VarType.double, "LoopFreqHz")
     time.sleep(1.0 / LoopFreqHz)
-
 st.leave_sim()
+
+# Originial simulation loop below
+
+# Keep the sim running (if this loop exits early for any reason, the sim will end)
+#exit_flag = False
+#while not exit_flag:
+    # Default behavior for losing comms is to go back to where we last had comms
+    #if en.GetParam(st.VarType.bool, "HasComms"):
+        #last_comm_coord: st.PlanetUtils.Coord = mover.GetCurrentCoord()
+    #else:
+        #mover.TurnAndMoveToCoord(last_comm_coord)
+        #st.OnScreenLogMessage(f"Entity {en.getName()} comm line of sight occluded; Moving back to last point with comm", 
+                            #"LTV Behavior", st.Severity.Info)
+
+    #rel_vecs, radii, had_comms = ET.GetLidarObstacles(en)
+    # st.logger_info("Lidar info: " + str(np.asarray(rel_vecs)) + ", " + str(np.asarray(radii)) + ", " + str(had_comms))
+    
+    ######################
+    # WIP obstacle hit detection - TBD exact behavior
+    #ran_into_something_thistime = False
+    #for i in range(len(rel_vecs)):
+        #rel_vec = rel_vecs[i]
+        #obstacle_radius = radii[i]
+        #distance_away = np.linalg.norm(rel_vec)
+        #separation = distance_away - DEFAULT_ENTITY_RADIUS_M - obstacle_radius
+        #if separation < 0.0:
+            #ran_into_something_thistime = True
+            #if not ranIntoSomething:
+                #st.OnScreenLogMessage(f"Entity {en.getName()} ran into an obstacle, {distance_away}m away with {obstacle_radius}m radius.", "LTV Behavior", st.Severity.Warning)
+                #ranIntoSomething = True
+    #if not ran_into_something_thistime:
+        #if ranIntoSomething:
+            #st.OnScreenLogMessage(f"Entity {en.getName()} is no longer running into an obstacle.", "LTV Behavior", st.Severity.Warning)
+        #ranIntoSomething = False
+    ######################
+
+    # Loop delay so we don't use too much CPU resources
+    #LoopFreqHz = st.GetThisSystem().GetParam(st.VarType.double, "LoopFreqHz")
+    #time.sleep(1.0 / LoopFreqHz)
+
+#st.leave_sim()

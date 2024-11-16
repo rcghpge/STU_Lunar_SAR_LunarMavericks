@@ -18,7 +18,6 @@
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
-          "Entities": [ "array", "EntityRef", "LTV1", "LTV2", "ScoutRover1", "ScoutRover2" ],
           "Planet": [ "EntityRef", "Moon" ],
           "LoopFreqHz": 1000.0
         }

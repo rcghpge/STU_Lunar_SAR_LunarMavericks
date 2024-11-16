@@ -464,7 +464,7 @@
         "#Required": {
           "Name": "LTV2",
           "Type": "FromTemplate",
-          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement", "SurfaceCommunications" ],
+          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement", "SurfaceCommunications" ]
         },
         "#FromTemplate": {
           "Source_Path": "SharedData/SCAssets/LoadableMeshes/LTV/LTV_Body.json",

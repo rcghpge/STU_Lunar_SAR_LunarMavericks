@@ -349,7 +349,7 @@
         "#Required": {
           "Name": "LTV1_CamScanner",
           "Type": "CamScanner",
-          "Systems": ["ParamWrangler"]
+          "Systems": []
         },
         "Dynamics": {
           "PropagationType": "ComputeAcceleration",
@@ -1425,7 +1425,7 @@
         "#Required": {
           "Type": "BP",
           "Name": "LTV1_CamScanner",
-          "Systems": [ "ParamWrangler"]
+          "Systems": []
         },
         "#BP": {
           "BP_Path": "/Game/Prebuilt_BPs/GeometryTracer/E_TraceForObjects.E_TraceForObjects_C"

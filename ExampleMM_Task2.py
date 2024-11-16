@@ -34,6 +34,10 @@ LTV2: st.Entity = entities[1]
 Scout1: st.Entity = entities[2]
 Scout2: st.Entity = entities[3]
 
+# Entity reaction warnings
+for en in entities:
+    mm.SetupAllCommands(en)
+
 # TaskGraphs for each entity
 LTV1_task_graph = TG.TaskGraph()
 LTV2_task_graph = TG.TaskGraph()

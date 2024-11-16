@@ -105,7 +105,7 @@ def On_CameraCapDone( orig_command: Command,
                      capturedImage: st.CapturedImage):
     # first_pixel = capturedImage.PixelsR[0]
     # st.OnScreenLogMessage(f"Camera capture done; first red pixel value: " + str(first_pixel), "LTV Behavior", st.Severity.Info)
-
+    
     payload = st.ParamMap()
     payload.AddParamArray(st.VarType.uint8, "PixelsR", capturedImage.PixelsR)
     payload.AddParamArray(st.VarType.uint8, "PixelsG", capturedImage.PixelsG)
@@ -124,6 +124,29 @@ def CaptureImage_Received(command: Command):
     st.OnImageReceived(capture_id, lambda capturedImage: On_CameraCapDone(command, capture_id, capturedImage))
 
 en_behavior.OnCommandReceived("CaptureImage", CaptureImage_Received)
+
+# PickUpAntenna command handling
+def PickUpAntenna_Received(command: Command):
+    payload: st.ParamMap = command.payload
+    param_list_name = payload.GetParam(st.VarType.string, "ParamListName")
+    result_code = en_behavior.PickUpObject(param_list_name)
+    payload2 = st.ParamMap()
+    payload2.AddParam(st.VarType.int32, "ResultCode", result_code)
+    if result_code == 0:
+        en_behavior.CompleteCommand("PickUpAntenna", payload2)
+    else:
+        en_behavior.FailCommand("PickUpAntenna", payload2)
+en_behavior.OnCommandReceived("PickUpAntenna", PickUpAntenna_Received)
+
+def PlaceDownAntenna_Received(command: Command):
+    result_code = en_behavior.PlaceDownObject()
+    payload = st.ParamMap()
+    payload.AddParam(st.VarType.int32, "ResultCode", result_code)
+    if result_code == 0:
+        en_behavior.CompleteCommand("PlaceDownAntenna", payload)
+    else:
+        en_behavior.FailCommand("PlaceDownAntenna", payload)
+en_behavior.OnCommandReceived("PlaceDownAntenna", PlaceDownAntenna_Received)
 
 #######################
 ##  Simulation Loop  ##

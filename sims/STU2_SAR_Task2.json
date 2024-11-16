@@ -27,7 +27,7 @@
         "Nametag": "EntityBehavior_LTV1",
         "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
         "Type": "Python",
-        "Active": true,
+        "IsActive": true,
         "Inst_Parameters": {
           "Entity": [ "EntityRef", "LTV1"],
           "Planet": [ "EntityRef", "Moon" ],
@@ -38,7 +38,7 @@
         "Nametag": "EntityBehavior_LTV2",
         "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
         "Type": "Python",
-        "Active": true,
+        "IsActive": true,
         "Inst_Parameters": {
           "Entity": [ "EntityRef", "LTV2"],
           "Planet": [ "EntityRef", "Moon" ],
@@ -49,7 +49,7 @@
         "Nametag": "EntityBehavior_Scout1",
         "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
         "Type": "Python",
-        "Active": true,
+        "IsActive": true,
         "Inst_Parameters": {
           "Entity": [ "EntityRef", "ScoutRover1"],
           "Planet": [ "EntityRef", "Moon" ],
@@ -60,7 +60,7 @@
         "Nametag": "EntityBehavior_Scout2",
         "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
         "Type": "Python",
-        "Active": true,
+        "IsActive": true,
         "Inst_Parameters": {
           "Entity": [ "EntityRef", "ScoutRover2"],
           "Planet": [ "EntityRef", "Moon" ],

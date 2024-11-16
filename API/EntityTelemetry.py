@@ -167,3 +167,8 @@ def GetChargingStationXY():
     mover = SM.SurfaceMover(charging_station_en, st.GetSimEntity().GetParam(st.VarType.entityRef, "Planet"))
     current_coord = mover.GetCurrentCoord()
     return CoordToXY(current_coord)
+
+def GetCrashSiteXY() -> XY:
+    # Assuming the crash site is defined in the simulation parameters
+    crash_site_lla = st.GetSimEntity().GetParam(st.VarType.latlonalt, "CrashSite")
+    return LatLonAltToXY(crash_site_lla)

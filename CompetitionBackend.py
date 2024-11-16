@@ -105,25 +105,25 @@ while not exit_flag:
     if ((ScoutRover2_xy.x - charging_xy.x) ** 2 + (ScoutRover2_xy.y - charging_xy.y) ** 2) < CHARGING_RADIUS_M ** 2:
         ScoutRover2_at_charging = True
 
-    # Check if the entities are at the crash site
-    LTV1_at_crash = False
-    LTV2_at_crash = False
-    ScoutRover1_at_crash = False
-    ScoutRover2_at_crash = False
+    # Check if the entities are at the target site
+    LTV1_at_target = False
+    LTV2_at_target = False
+    ScoutRover1_at_target = False
+    ScoutRover2_at_target = False
 
-    crash_xy = ET.GetCrashSiteXY()
+    target_xy = ET.GetTargetScanStatus()
 
-    if ((LTV1_xy.x - crash_xy.x) ** 2 + (LTV1_xy.y - crash_xy.y) ** 2) < CHARGING_RADIUS_M ** 2:
-        LTV1_at_crash = True
+    if ((LTV1_xy.x - target_xy.x) ** 2 + (LTV1_xy.y - target_xy_xy.y) ** 2) < CHARGING_RADIUS_M ** 2:
+        LTV1_at_target = True
 
-    if ((LTV2_xy.x - crash_xy.x) ** 2 + (LTV2_xy.y - crash_xy.y) ** 2) < CHARGING_RADIUS_M ** 2:
-        LTV2_at_crash = True
+    if ((LTV2_xy.x - target_xy.x) ** 2 + (LTV2_xy.y - target_xy.y) ** 2) < CHARGING_RADIUS_M ** 2:
+        LTV2_at_target = True
 
-    if ((ScoutRover1_xy.x - crash_xy.x) ** 2 + (ScoutRover1_xy.y - crash_xy.y) ** 2) < CHARGING_RADIUS_M ** 2:
-        ScoutRover1_at_crash = True
+    if ((ScoutRover1_xy.x - target_xy.x) ** 2 + (ScoutRover1_xy.y - target_xy.y) ** 2) < CHARGING_RADIUS_M ** 2:
+        ScoutRover1_at_target = True
 
-    if ((ScoutRover2_xy.x - crash_xy.x) ** 2 + (ScoutRover2_xy.y - crash_xy.y) ** 2) < CHARGING_RADIUS_M ** 2:
-        ScoutRover2_at_crash = True
+    if ((ScoutRover2_xy.x - target_xy.x) ** 2 + (ScoutRover2_xy.y - target_xy.y) ** 2) < CHARGING_RADIUS_M ** 2:
+        ScoutRover2_at_target = True
 
     # (For initial submission: Any robot detects the crash site)
     # (For full submission: LTV with enough resources has reached the crash site)

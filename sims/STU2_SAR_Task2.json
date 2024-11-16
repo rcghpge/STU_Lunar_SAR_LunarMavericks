@@ -113,6 +113,7 @@
         "FreqType":"Sim",
         "Frequency": 200.0,
         "Inst_Parameters": {
+          "Entities": [ "array", "EntityRef", "LTV1", "LTV2", "ScoutRover1", "ScoutRover2" ],
           "Planet": [ "EntityRef", "Moon" ],
           "PlanetRadius_m": 1737400.0,
           "Datasets": [
@@ -137,7 +138,7 @@
         "FreqType":"Sim",
         "Frequency": 200.0,
         "Inst_Parameters": {
-          "TestEntities": [ "array", "EntityRef", "LTV1", "LTV2" ],
+          "Entities": [ "array", "EntityRef", "LTV1", "LTV2" ],
           "CommsNetwork": [ "array", "LTV1","EntityRef", "Beacon1", "Beacon2", "Beacon3", "Habitat" ],
           "Planet": [ "EntityRef", "Moon" ],
           "PlanetRadius_m": 1737400.0,
@@ -272,7 +273,7 @@
         "#Required": {
           "Name": "LTV1",
           "Type": "FromTemplate",
-          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement"],
+          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement", "SurfaceCommunications"],
           "Dynamics": {
             "PropagationType": "ComputeAcceleration",
             "GenerateCollider": false,

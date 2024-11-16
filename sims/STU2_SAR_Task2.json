@@ -348,7 +348,7 @@
       {
         "#Required": {
           "Name": "LTV1_CamScanner",
-          "Type": "CamScanner",
+          "Type": "BP",
           "Systems": []
         },
         "Dynamics": {

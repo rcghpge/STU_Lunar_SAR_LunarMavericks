@@ -32,8 +32,8 @@ LTV1 = every_en[0]
 LTV2 = every_en[1]
 ScoutRover1 = every_en[2]
 ScoutRover2 = every_en[3]
-EVA1 = every_en[4]
-EVA2 = every_en[5]
+#EVA1 = every_en[4]
+#EVA2 = every_en[5]
 
 # Get all entities participating in the search
 

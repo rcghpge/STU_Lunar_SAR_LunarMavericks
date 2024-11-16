@@ -1178,7 +1178,7 @@
         "ScanRadius_m": 20.0,
         "Target": [ "EntityRef", "CrashedLunarLander" ],
         "TargetLocation": [ "doubleV3", 0.0, 0.0, 0.0 ],
-        "TargetFound": false,
+        "TargetFound": true,
         "DoScan": true,
         "RelVecsAndRadii": ["array", "doubleV4"]
       },

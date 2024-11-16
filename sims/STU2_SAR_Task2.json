@@ -272,7 +272,7 @@
         "#Required": {
           "Name": "LTV1",
           "Type": "FromTemplate",
-          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement", "SurfaceCommunications" ],
+          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement"],
           "Dynamics": {
             "PropagationType": "ComputeAcceleration",
             "GenerateCollider": false,

@@ -274,7 +274,12 @@
           "Name": "LTV1",
           "Type": "FromTemplate",
           "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement" ],
-          "Camera": ["EntityRef", "LTV1_Camera"]
+          "Dynamics": {
+            "PropagationType": "ComputeAcceleration",
+            "GenerateCollider": false,
+            "Mass": 1.0,
+            "ResidentFrame": [ "EntityRef", "Moon" ]
+          }
         },
         "#FromTemplate": {
           "Source_Path": "SharedData/SCAssets/LoadableMeshes/LTV/LTV_Body.json",
@@ -348,7 +353,7 @@
       {
         "#Required": {
           "Name": "LTV1_CamScanner",
-          "Type": "FromTemplate",
+          "Type": "Camera",
           "Systems": []
         },
         "Dynamics": {

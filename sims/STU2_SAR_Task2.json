@@ -184,7 +184,7 @@
       "Habitat": [ "EntityRef", "Habitat" ],
       "MoonInertialFrame": [ "EntityRef", "Moon_Inertial" ],
       "Planet": [ "EntityRef", "Moon" ],
-      "LTV1": [ "EntityRef", "LTV1" ],
+      "LTV1": [ "array", "EntityRef", "LTV1" ],
       "Target": [ "EntityRef", "CrashedLunarLander" ],
       "LocalCoordinateOrigin": [ "EntityRef", "LocalCoordinateOrigin" ],
       "LocationOptions": {

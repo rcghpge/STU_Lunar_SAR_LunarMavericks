@@ -38,7 +38,7 @@
         "Nametag": "EntityBehavior_LTV2",
         "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
         "Type": "Python",
-        "IsActive": true,
+        "IsActive": false,
         "Inst_Parameters": {
           "Entity": [ "EntityRef", "LTV2"],
           "Planet": [ "EntityRef", "Moon" ],
@@ -49,7 +49,7 @@
         "Nametag": "EntityBehavior_Scout1",
         "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
         "Type": "Python",
-        "IsActive": true,
+        "IsActive": false,
         "Inst_Parameters": {
           "Entity": [ "EntityRef", "ScoutRover1"],
           "Planet": [ "EntityRef", "Moon" ],
@@ -60,7 +60,7 @@
         "Nametag": "EntityBehavior_Scout2",
         "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
         "Type": "Python",
-        "IsActive": true,
+        "IsActive": false,
         "Inst_Parameters": {
           "Entity": [ "EntityRef", "ScoutRover2"],
           "Planet": [ "EntityRef", "Moon" ],
@@ -354,7 +354,7 @@
         "#Required": {
           "Name": "LTV1_CamScanner",
           "Type": "Camera",
-          "Systems": ["ParamWrangler"]
+          "Systems": []
         },
         "Dynamics": {
           "PropagationType": "ComputeAcceleration",
@@ -464,7 +464,7 @@
         "#Required": {
           "Name": "LTV2",
           "Type": "FromTemplate",
-          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement" ]
+          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement", "SurfaceCommunications" ],
         },
         "#FromTemplate": {
           "Source_Path": "SharedData/SCAssets/LoadableMeshes/LTV/LTV_Body.json",

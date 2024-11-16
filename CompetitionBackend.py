@@ -113,7 +113,7 @@ while not exit_flag:
 
     target_xy = ET.GetTargetScanStatus()
 
-    if ((LTV1_xy.x - target_xy.x) ** 2 + (LTV1_xy.y - target_xy_xy.y) ** 2) < CHARGING_RADIUS_M ** 2:
+    if ((LTV1_xy.x - target_xy.x) ** 2 + (LTV1_xy.y - target_xy.y) ** 2) < CHARGING_RADIUS_M ** 2:
         LTV1_at_target = True
 
     if ((LTV2_xy.x - target_xy.x) ** 2 + (LTV2_xy.y - target_xy.y) ** 2) < CHARGING_RADIUS_M ** 2:

@@ -4,6 +4,7 @@ import numpy as np
 
 import API.SurfaceMovement as SM
 from API.STU_Common import XY, Command, CoordToXY
+from API.STU_Common import *
 
 #TODO docstrings on all of these functions
 

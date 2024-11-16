@@ -24,6 +24,18 @@ planet: st.Entity = st.GetThisSystem().GetParam(st.VarType.entityRef, "Planet")
 mover = SM.SurfaceMover(en, planet)
 en_behavior = EB.EntityBehavior(en)
 
+# Verifying SAR participant entities are present
+try:
+    en: st.Entity = st.GetThisSystem().GetParam(st.VarType.entityRef, "Entity")
+except Exception as e:
+    st.OnScreenLogMessage(f"Error getting 'Entity' parameter: {e}", "EntityBehavior_LTV", st.Severity.Error)
+
+try:
+    planet: st.Entity = st.GetThisSystem().GetParam(st.VarType.entityRef, "Planet")
+except Exception as e:
+    st.OnScreenLogMessage(f"Error getting 'Planet' parameter: {e}", "EntityBehavior_LTV", st.Severity.Error)
+
+
 ##############################
 ##  Move behaviors for LTV  ##
 ##############################

@@ -15,7 +15,7 @@
                 "Nametag": "ParamWrangler",
                 "Source": "TestingTools/ParamWrangler.py",
                 "Type": "Python",
-                "Active": true,
+                "Active": false,
                 "Inst_Parameters": {}
             },
             {
@@ -606,6 +606,7 @@
                     0.0,
                     0.0
                 ],
+                "UpdateOnTick": true,
                 "Height": -0.1,
                 "LOSHeight": 500.0
             },
@@ -670,6 +671,7 @@
                     0.0,
                     0.0
                 ],
+                "UpdateOnTick": true,
                 "Height": -0.1,
                 "LOSHeight": 500.0
             },
@@ -734,6 +736,7 @@
                     0.0,
                     0.0
                 ],
+                "UpdateOnTick": true,
                 "Height": -0.1,
                 "LOSHeight": 500.0
             },

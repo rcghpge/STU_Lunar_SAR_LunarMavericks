@@ -3,7 +3,7 @@ from typing import Callable, Dict, List, Set
 import API.STU_Common as STU
 
 class Task:
-    def __init__(self, task_id: str, command : STU.Command):
+    def __init__(self, task_id: str, command : STU.Command = None):
         """
         Initialize a task.
 
@@ -16,8 +16,13 @@ class Task:
         self.completed = False
         self.failed = False
         # Contents
-        self.command = command
         self.started = False
+        self.task_type = "Command"
+        # Command-specific stuff
+        self.command = command
+        # Timer-specific stuff
+        self.timer_duration = None
+        self.timer_start = None
 
     def __repr__(self):
         status = 'Completed' if self.completed else ('Failed' if self.failed else 'Pending')

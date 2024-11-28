@@ -44,9 +44,14 @@ def _calculate_passive_transformation_matrix(azimuth_deg, elevation_deg) -> np.n
 class EntityBehavior:
     def __init__(self, en: st.Entity) -> None:
         self.en = en
+        self.objects: list[st.Entity] = []
         self.scanner: st.Entity = en.GetParam(st.VarType.entityRef, "Scanner")
         self.battery: st.Entity = en.GetParam(st.VarType.entityRef, "Battery")
-        self.camera: st.Entity = en.GetParam(st.VarType.entityRef, "Camera")
+        if(en.HasParam("Camera")):
+            self.camera: st.Entity = en.GetParam(st.VarType.entityRef, "Camera")
+        else:
+            self.camera: st.Entity = None
+            st.logger_warn(f"Entity {self.en.getName()} does not have a camera; camera functions will not work.")
         self.command_reactions = dict()
         self.camera_capture_reaction = None
         #TODO may shift this to params so we can read the active commands from the 
@@ -76,6 +81,7 @@ class EntityBehavior:
         # Run the reaction for this command
         self.command_reactions[commandType](command)
 
+    
     def HasComms(self) -> bool:
         '''
         Whether this entity can communicate with the mission manager.
@@ -154,7 +160,7 @@ class EntityBehavior:
         else:   
             return False
     
-
+    
     def ActiveCommands(self) -> dict:
         '''
         Returns a dictionary of active commands.
@@ -162,8 +168,7 @@ class EntityBehavior:
         '''
         return self.active_commands
 
-
-
+    
     def CameraPan(self, azimuth_deg: float, elevation_deg: float):
         '''
         Pan the entity's camera to the specified azimuth and elevation.
@@ -172,6 +177,7 @@ class EntityBehavior:
         dcm = _calculate_passive_transformation_matrix(azimuth_deg, elevation_deg)
         self.camera.setRotation_DCM(dcm, self.en.GetBodyFixedFrame()) #TODO
 
+    
     def CameraCapture(self, exposure : float) -> int:
         '''
         Capture an image from the entity's camera.
@@ -186,7 +192,63 @@ class EntityBehavior:
         properties.FOV = self.camera.GetParam(st.VarType.double, "FOV")
         # leaving captureID blank so it randomizes
         return st.CaptureImage(self.camera, properties)
+    
+    
+    def PickUpObject(self, param_list_name) -> int:
+        if(self.en.getName() != "LTV1"):
+            st.OnScreenLogMessage("Entity " + self.en.getName() + " is not the LTV1 with EVA crew onboard; cannot pick up objects.", 
+                                  "Entity Behavior", st.Severity.Error)
+            return -1
+        objects: list[st.Entity] = st.GetSimEntity().GetParamArray(st.VarType.entityRef, param_list_name)
+        distances: list[float] = []
+        valid_objects: list[int] = []
 
+        frame_pcpf: st.Frame = self.en.getResidentFrame()
+        frame_en: st.Frame = self.en.GetBodyFixedFrame()
+        en_loc = self.en.getLocation().WRT_ExprIn(frame_pcpf)
+        
+        for obj in objects:
+            obj_loc = obj.getLocation().WRT_ExprIn(frame_pcpf)
+            distance = np.linalg.norm(obj_loc - en_loc)
+            if distance < 5.0:
+                distances.append(distance)
+                valid_objects.append(1)
+            else:
+                distances.append(1000000.0)
+                valid_objects.append(0)
+        if sum(valid_objects) > 0:
+            min_idx = np.argmin(distances)
+            obj = objects[min_idx]
+            if obj.HasParam("UpdateOnTick"):
+                obj.SetParam(st.VarType.bool, "UpdateOnTick", False)
+            obj.setResidentFrame(frame_en)
+            obj.setLocation(np.array([-1.0, 0.0, 1.6]), frame_en)
+            obj.setRotation_DCM(np.identity(3), frame_en)
+            obj.setVelocity(np.zeros(3), frame_en)
+            obj.setAcceleration(np.zeros(3), frame_en)
+            self.objects.append(obj)
+            return 0
+        else:
+            return -1
+    
+    
+    def PlaceDownObject(self) -> int:
+        if (len(self.objects) > 0):
+            obj: st.Entity = self.objects[0]
+            if obj.HasParam("UpdateOnTick"):
+                obj.SetParam(st.VarType.bool, "UpdateOnTick", True)
+            frame_pcpf: st.Frame = self.en.getResidentFrame()
+            en_loc = self.en.getLocation().WRT_ExprIn(frame_pcpf)
+            obj.setResidentFrame(frame_pcpf)
+            obj.setLocation(en_loc, frame_pcpf)
+            obj.setVelocity(np.zeros(3), frame_pcpf)
+            obj.setAcceleration(np.zeros(3), frame_pcpf)
+            self.objects.clear()
+            return 0
+        else:
+            return -1
+
+    
     def _handleCameraCaptureDone(self, payload : st.ParamMap, timestamp : st.timestamp):
         '''
         Internal function; do not use.

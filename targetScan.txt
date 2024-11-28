@@ -1,0 +1,26 @@
+#######################
+##  Simulation Loop  ##
+#######################
+
+iterator = 0
+
+crash_site_loc = XY(0, 0)
+crash_site_found = False
+
+exit_flag = False
+while not exit_flag:
+    LoopFreqHz = st.GetThisSystem().GetParam(st.VarType.double, "LoopFreqHz")
+    time.sleep(1.0 / LoopFreqHz)
+    iterator += 1
+
+    if not crash_site_found:
+        for en in entities:
+            found, xy, had_comms = ET.GetTargetScanStatus(en)
+            if had_comms and found:
+                st.OnScreenLogMessage(f"{en.getName()} found target at {xy.x}, {xy.y}", "Mission Manager", st.Severity.Info)
+                crash_site_loc = xy
+                crash_site_found = True
+                #NOTE: should send LTV1 to crash site with >50% battery remaining to rescue
+                # battery_fraction, had_comms = ET.GetStateOfCharge(LTV1)
+                # if had_comms and battery_fraction > 0.5:
+                #     st.OnScreenLogMessage(f"{LTV1.getName()} has enough battery to go to crash site.", "Mission Manager", st.Severity.Info)

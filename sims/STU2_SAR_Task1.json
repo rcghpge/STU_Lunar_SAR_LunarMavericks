@@ -13,20 +13,19 @@
     "Systems": [
       {
         "Nametag": "MissionManager",
-        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/ExampleMM_TaskGraphSimple.py",
+        "Source": "Local/Repos/STU_Competition2/ExampleMM_TaskGraphSimple.py",
         "NOTE": "YOU CAN REPLACE Source WITH ANOTHER MISSION MANAGER PYTHON SYSTEM",
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
-          "Entity": [ "array", "EntityRef", "LTV1", "LTV2", "EVA1", "EVA2", "ChargingStation", 
-          "ProcessingFacility", "Beacon1", "Beacon2", "Beacon3", "PowerAssembly" ],
+          "Entities": [ "array", "EntityRef", "LTV1", "LTV2" ],
           "Planet": [ "EntityRef", "Moon" ],
           "LoopFreqHz": 1000.0
         }
       },
       {
         "Nametag": "EntityBehavior_LTV1",
-        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
+        "Source": "Local/Repos/STU_Competition2/EntityBehavior_LTV.py",
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
@@ -37,7 +36,7 @@
       },
       {
         "Nametag": "EntityBehavior_LTV2",
-        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
+        "Source": "Local/Repos/STU_Competition2/EntityBehavior_LTV.py",
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
@@ -50,34 +49,27 @@
         "Nametag": "ParamWrangler",
         "Source": "TestingTools/ParamWrangler.py",
         "Type": "Python",
-        "Active": true,
+        "Active": false,
         "Inst_Parameters": {
-          "LoopFreqHz": 1000.0
         }
       },
       {
         "Nametag": "CompetitionBackend",
-        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/CompetitionBackend.py",
+        "Source": "Local/Repos/STU_Competition2/CompetitionBackend.py",
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
           "Entities": [ "array", "EntityRef", "LTV1", "LTV2" ],
           "Planet": [ "EntityRef", "Moon" ],
-          "LoopFreqHz": 1000.0
+          "LoopFreqHz": 500.0
         }
       },
       {
         "Nametag": "AdvRes_Power",
-        "Source": "../AdvancedResourceSystems/PriorityPowerSolver/bin/PriorityPowerSolver.dll",
+        "Source": "../AdvancedResourceSystems/PriorityPowerSolver/bin/PriorityPowerSolver",
         "Type": "Normal",
-        "Active": true,
-        "Frequency": 1000.0,
+        "Frequency": 100.0,
         "Inst_Parameters": {
-          "Entities": [ "array", "EntityRef", "LTV1", "LTV2" ],
-          "PowerAssembly": [ "EntityRef", "PowerAssembly" ],
-          "ChargingStation": [ "EntityRef", "ChargingStation" ],
-          "Planet": [ "EntityRef", "Moon" ], 
-          "PlanetRadius_m": 1737400.0
         }
       },
       {
@@ -133,7 +125,6 @@
         "FreqType":"Sim",
         "Frequency": 200.0,
         "Inst_Parameters": {
-          "LoopFreqHz": 1000.0,
           "Planet": [ "EntityRef", "Moon" ],
           "PlanetRadius_m": 1737400.0,
           "Datasets": [
@@ -158,7 +149,6 @@
         "FreqType":"Sim",
         "Frequency": 200.0,
         "Inst_Parameters": {
-          "LoopFreqHz": 1000.0,           
           "TestEntities": [ "array", "EntityRef", "LTV1", "LTV2" ],
           "CommsNetwork": [ "array", "EntityRef", "Beacon1", "Beacon2", "Beacon3", "Habitat" ],
           "Planet": [ "EntityRef", "Moon" ],
@@ -279,8 +269,11 @@
       "GraphicsFrame": [ "EntityRef", "Moon" ],
       "J2000Frame": [ "EntityRef", "SSB" ],
       "Pawn": [ "EntityRef", "Spectator1" ],
-      "PowerAssembly": [ "EntityRef", "AdvRes_Power" ],
+      "EVA1": [ "EntityRef", "EVA1" ],
+      "EVA2": [ "EntityRef", "EVA2" ],
+      "Beacons": [ "array", "EntityRef", "Beacon1", "Beacon2", "Beacon3" ],
       "ChargingStation": [ "EntityRef", "ChargingStation" ],
+      "PowerAssembly": [ "EntityRef", "PowerAssembly" ],
       "Habitat": [ "EntityRef", "Habitat" ],
       "MoonInertialFrame": [ "EntityRef", "Moon_Inertial" ],
       "Planet": [ "EntityRef", "Moon" ],
@@ -642,8 +635,7 @@
         "#Required": {
           "Name": "LTV1",
           "Type": "FromTemplate",
-          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement", "SurfaceCommunications", "AdvRes_Power"],
-          "Camera": ["EntityRef", "LTV1_Camera"]
+          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement" ]
         },
         "#FromTemplate": {
           "Source_Path": "SharedData/SCAssets/LoadableMeshes/LTV/LTV_Body.json",
@@ -690,31 +682,9 @@
               "MinPowerReq": 200.0
             },
             "Scanner": ["EntityRef", "LTV1_Scanner"],
-            "Battery": ["EntityRef", "LTV1_Battery"],
-            "Inst_Parameters": {
-              "Systems": ["EntityRef", "Battery_LTV1"]
-            },
-            "Camera": ["EntityRef", "LTV1_Camera"]
+            "Battery": ["EntityRef", "LTV1_Battery"]
           }
         }
-      },
-      {
-        "#Required": {
-          "Name": "LTV1_Camera",
-          "Type": "Camera",
-          "Systems": []
-        },
-        "Dynamics": {
-          "PropagationType": "ComputeAcceleration",
-          "GenerateCollider": false,
-          "Mass": 1.0,
-          "ResidentFrame": [ "EntityRef", "LTV1" ]
-        },
-        "Graphics": {
-          "RenderFar": true,
-          "Scale": 1.0
-        },
-        "Location": [ "doubleV3", 0.5, 0, 2.2 ]
       },
       {
         "#Required": {
@@ -1178,7 +1148,7 @@
         "ScanRadius_m": 20.0,
         "Target": [ "EntityRef", "CrashedLunarLander" ],
         "TargetLocation": [ "doubleV3", 0.0, 0.0, 0.0 ],
-        "TargetFound": true,
+        "TargetFound": false,
         "DoScan": true,
         "RelVecsAndRadii": ["array", "doubleV4"]
       },
@@ -1558,7 +1528,7 @@
               "To": [ "EntityRef", "LTV1_Battery" ],
               "Solver": "AdvRes_Power",
               "Priority": 2,
-              "IsActive": true
+              "IsActive": false
             },
             "ChargingStation_LTV2": {
               "From": [ "EntityRef", "ChargingStationGenerator" ],
@@ -1572,14 +1542,14 @@
               "To": [ "EntityRef", "LTV1" ],
               "Solver": "AdvRes_Power",
               "Priority": 2,
-              "IsActive": false
+              "IsActive": true
             },
             "Battery_LTV2": {
               "From": [ "EntityRef", "LTV2_Battery" ],
               "To": [ "EntityRef", "LTV2" ],
               "Solver": "AdvRes_Power",
               "Priority": 2,
-              "IsActive": false
+              "IsActive": true
             },
             "ChargingStation_EVA1": {
               "From": [ "EntityRef", "ChargingStationGenerator" ],

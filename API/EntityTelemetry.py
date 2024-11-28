@@ -4,7 +4,6 @@ import numpy as np
 
 import API.SurfaceMovement as SM
 from API.STU_Common import XY, Command, CoordToXY
-from API.STU_Common import *
 
 #TODO docstrings on all of these functions
 
@@ -15,7 +14,7 @@ def LatLonAltToXY(lla: st.PlanetUtils.LatLonAlt) -> XY:
     return CoordToXY(st.PlanetUtils.Coord(lla, 0.0, radius))
 
 
-def XYToLatLonAlt(en: st.Entity, xy: XY) -> st.PlanetUtils.LatLonAlt:
+def XYToLatLonAlt(xy: XY) -> st.PlanetUtils.LatLonAlt:
     return xy.toLLA()
 
 
@@ -130,12 +129,14 @@ def GetTargetScanStatus(en: st.Entity) -> tuple[bool, XY, bool]:
     '''
     has_comms = HasComms(en)
     if has_comms:
-        scanner_en : st.Entity = en.GetParam(st.VarType.entityRef, "Scanner")
+        scanner_en : st.Entity = en.GetParam(st.VarType.entityRef, "Scanner") #LIDAR
         found: bool = scanner_en.GetParam(st.VarType.bool, "TargetFound")
         loc = scanner_en.GetParam(st.VarType.doubleV3, "TargetLocation")
         xy = CoordToXY(st.PlanetUtils.Coord(loc, np.identity(3), 1737400))
+        # found = False 
+        #NOTE ^ if uncommented, disables LIDAR recognizing the target
         if not found:
-            cam_scanner_en : st.Entity = en.GetParam(st.VarType.entityRef, "CamScanner")
+            cam_scanner_en : st.Entity = en.GetParam(st.VarType.entityRef, "CamScanner") #Camera scan volume
             found: bool = cam_scanner_en.GetParam(st.VarType.bool, "TargetFound")
             loc = cam_scanner_en.GetParam(st.VarType.doubleV3, "TargetLocation")
             xy = CoordToXY(st.PlanetUtils.Coord(loc, np.identity(3), 1737400))
@@ -157,6 +158,16 @@ def GetStateOfCharge(en: st.Entity) -> tuple[float, bool]:
         return current_energy_J / max_energy_storage_J, has_comms
     else:
         return 0.0, has_comms
+
+def _GetStateOfCharge_Backend(en: st.Entity) -> float:
+    '''
+    BACKEND USE ONLY.
+    Returns the 0-1 fraction of charge of the entity's battery.
+    '''
+    battery_en : st.Entity = en.GetParam(st.VarType.entityRef, "Battery")
+    current_energy_J = battery_en.GetParam(st.VarType.double, ["Resources", "currentPower"])
+    max_energy_storage_J = battery_en.GetParam(st.VarType.double, ["Resources", "Maximum_Power_Storage"])
+    return current_energy_J / max_energy_storage_J
     
 def GetChargingStationXY():
     '''
@@ -168,7 +179,15 @@ def GetChargingStationXY():
     current_coord = mover.GetCurrentCoord()
     return CoordToXY(current_coord)
 
-def GetCrashSiteXY() -> XY:
-    # Assuming the crash site is defined in the simulation parameters
-    crash_site_lla = st.GetSimEntity().GetParam(st.VarType.latlonalt, "CrashSite")
-    return LatLonAltToXY(crash_site_lla)
+def GetAntennaXY(index: int):
+    '''
+    Returns the XY coordinate of the appropriate antenna.
+    Index is 1->3.
+    Doesn't require comms.
+    '''
+    if(index < 1 or index > 3):
+        raise ValueError("Antenna index must be 1, 2, or 3.")
+    antenna_en : st.Entity = st.GetSimEntity().GetParamArray(st.VarType.entityRef, "Beacons")[index-1]
+    mover = SM.SurfaceMover(antenna_en, st.GetSimEntity().GetParam(st.VarType.entityRef, "Planet"))
+    current_coord = mover.GetCurrentCoord()
+    return CoordToXY(current_coord)

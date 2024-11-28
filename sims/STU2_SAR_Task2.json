@@ -7,68 +7,69 @@
     "Description": "Human-in-the-loop mission timeline optimization within a complex Lunar surface architecture."
   },
   "IncludeSims": [
-    "Local/Repos/STU_Lunar_SAR_LunarMavericks/sims/STU_BaseSim.json"
+    "Local/Repos/STU_Competition2/sims/STU_BaseSim.json"
   ],
   "SystemManager": {
     "Systems": [
       {
         "Nametag": "MissionManager",
-        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/ExampleMM_Task2.py",
+        "Source": "Local/Repos/STU_Competition2/ExampleMM_Task2.py",
         "NOTE": "YOU CAN REPLACE Source WITH ANOTHER MISSION MANAGER PYTHON SYSTEM",
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
+          "Entities": [ "array", "EntityRef", "LTV1", "LTV2", "ScoutRover1", "ScoutRover2" ],
           "Planet": [ "EntityRef", "Moon" ],
           "LoopFreqHz": 1000.0
         }
       },
       {
         "Nametag": "EntityBehavior_LTV1",
-        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
+        "Source": "Local/Repos/STU_Competition2/EntityBehavior_LTV.py",
         "Type": "Python",
-        "IsActive": true,
+        "Active": true,
         "Inst_Parameters": {
-          "Entity": [ "EntityRef", "LTV1"],
+          "Entity": [ "EntityRef", "LTV1" ],
           "Planet": [ "EntityRef", "Moon" ],
           "LoopFreqHz": 1000.0
         }
       },
       {
         "Nametag": "EntityBehavior_LTV2",
-        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
+        "Source": "Local/Repos/STU_Competition2/EntityBehavior_LTV.py",
         "Type": "Python",
-        "IsActive": false,
+        "Active": true,
         "Inst_Parameters": {
-          "Entity": [ "EntityRef", "LTV2"],
+          "Entity": [ "EntityRef", "LTV2" ],
           "Planet": [ "EntityRef", "Moon" ],
           "LoopFreqHz": 1000.0
         }
       },
       {
         "Nametag": "EntityBehavior_Scout1",
-        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
+        "Source": "Local/Repos/STU_Competition2/EntityBehavior_LTV.py",
         "Type": "Python",
-        "IsActive": false,
+        "Active": true,
         "Inst_Parameters": {
-          "Entity": [ "EntityRef", "ScoutRover1"],
+          "Entity": [ "EntityRef", "ScoutRover1" ],
           "Planet": [ "EntityRef", "Moon" ],
           "LoopFreqHz": 1000.0
         }
       },
       {
         "Nametag": "EntityBehavior_Scout2",
-        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/EntityBehavior_LTV.py",
+        "Source": "Local/Repos/STU_Competition2/EntityBehavior_LTV.py",
         "Type": "Python",
-        "IsActive": false,
+        "Active": true,
         "Inst_Parameters": {
-          "Entity": [ "EntityRef", "ScoutRover2"],
+          "Entity": [ "EntityRef", "ScoutRover2" ],
           "Planet": [ "EntityRef", "Moon" ],
           "LoopFreqHz": 1000.0
         }
       },
       {
         "Nametag": "CompetitionBackend",
-        "Source": "Local/Repos/STU_Lunar_SAR_LunarMavericks/CompetitionBackend.py",
+        "Source": "Local/Repos/STU_Competition2/CompetitionBackend.py",
         "Type": "Python",
         "Active": true,
         "Inst_Parameters": {
@@ -113,7 +114,6 @@
         "FreqType":"Sim",
         "Frequency": 200.0,
         "Inst_Parameters": {
-          "Entities": [ "array", "EntityRef", "LTV1", "LTV2", "ScoutRover1", "ScoutRover2" ],
           "Planet": [ "EntityRef", "Moon" ],
           "PlanetRadius_m": 1737400.0,
           "Datasets": [
@@ -138,8 +138,8 @@
         "FreqType":"Sim",
         "Frequency": 200.0,
         "Inst_Parameters": {
-          "Entities": [ "array", "EntityRef", "LTV1", "LTV2" ],
-          "CommsNetwork": [ "array", "LTV1","EntityRef", "Beacon1", "Beacon2", "Beacon3", "Habitat" ],
+          "TestEntities": [ "array", "EntityRef", "LTV1", "LTV2" ],
+          "CommsNetwork": [ "array", "EntityRef", "Beacon1", "Beacon2", "Beacon3", "Habitat" ],
           "Planet": [ "EntityRef", "Moon" ],
           "PlanetRadius_m": 1737400.0,
           "Datasets": [
@@ -180,6 +180,10 @@
       "GraphicsFrame": [ "EntityRef", "Moon" ],
       "J2000Frame": [ "EntityRef", "SSB" ],
       "Pawn": [ "EntityRef", "Spectator1" ],
+      "EVA1": [ "EntityRef", "EVA1" ],
+      "EVA2": [ "EntityRef", "EVA2" ],
+      "LTV1": [ "EntityRef", "LTV1" ],
+      "Beacons": [ "array", "EntityRef", "Beacon1", "Beacon2", "Beacon3" ],
       "ChargingStation": [ "EntityRef", "ChargingStation" ],
       "PowerAssembly": [ "EntityRef", "PowerAssembly" ],
       "Habitat": [ "EntityRef", "Habitat" ],
@@ -217,6 +221,7 @@
             },
             "Height": 1.55,
             "FlipZ": true,
+            "UpdateOnTick": true,
             "AlignToSurfaceNormal": false,
             "Resources": {
               "currentPower": 108000.0,
@@ -251,6 +256,7 @@
             },
             "Height": 1.55,
             "FlipZ": true,
+            "UpdateOnTick": true,
             "AlignToSurfaceNormal": false,
             "Resources": {
               "currentPower": 108000.0,
@@ -273,13 +279,7 @@
         "#Required": {
           "Name": "LTV1",
           "Type": "FromTemplate",
-          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement", "SurfaceCommunications"],
-          "Dynamics": {
-            "PropagationType": "ComputeAcceleration",
-            "GenerateCollider": false,
-            "Mass": 1.0,
-            "ResidentFrame": [ "EntityRef", "Moon" ]
-          }
+          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement" ]
         },
         "#FromTemplate": {
           "Source_Path": "SharedData/SCAssets/LoadableMeshes/LTV/LTV_Body.json",
@@ -331,42 +331,6 @@
             "Camera": ["EntityRef", "LTV1_Camera"]
           }
         }
-      },
-      {
-        "#Required": {
-          "Name": "LTV1_Camera",
-          "Type": "Camera",
-          "Systems": []
-        },
-        "Dynamics": {
-          "PropagationType": "ComputeAcceleration",
-          "GenerateCollider": false,
-          "Mass": 1.0,
-          "ResidentFrame": [ "EntityRef", "LTV1" ]
-        },
-        "Graphics": {
-          "RenderFar": true,
-          "Scale": 1.0
-        },
-        "Location": [ "doubleV3", 0.5, 0, 2.2 ]
-      },
-      {
-        "#Required": {
-          "Name": "LTV1_CamScanner",
-          "Type": "Camera",
-          "Systems": []
-        },
-        "Dynamics": {
-          "PropagationType": "ComputeAcceleration",
-          "GenerateCollider": false,
-          "Mass": 1.0,
-          "ResidentFrame": [ "EntityRef", "LTV1" ]
-        },
-        "Graphics": {
-          "RenderFar": true,
-          "Scale": 1.0
-        },
-        "Location": [ "doubleV3", 0.5, 0, 2.2 ]
       },
       {
         "#Required": {
@@ -464,7 +428,7 @@
         "#Required": {
           "Name": "LTV2",
           "Type": "FromTemplate",
-          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement", "SurfaceCommunications" ]
+          "Systems": [ "SimpleWheels", "ParamWrangler", "SurfaceMovement" ]
         },
         "#FromTemplate": {
           "Source_Path": "SharedData/SCAssets/LoadableMeshes/LTV/LTV_Body.json",
@@ -1246,7 +1210,7 @@
         "#Required": {
           "Type": "Camera",
           "Name": "LTV1_Camera",
-          "Systems": ["ParamWrangler"]
+          "Systems": []
         },
         "Dynamics": {
           "PropagationType": "ComputeAcceleration",
@@ -1409,7 +1373,9 @@
         "AngVelocity": [ "doubleV3", 0.0, 0.0, 0.0 ],
         "AngAcceleration": [ "doubleV3", 0.0, 0.0, 0.0 ],
         "IgnoreInScan": ["array", "EntityRef", 
-          "LTV1", 
+          "LTV1",
+          "EVA1",
+          "EVA2",
           "LTV_Wheel1", 
           "LTV_Wheel2", 
           "LTV_Wheel3", 
@@ -1430,7 +1396,7 @@
         "#Required": {
           "Type": "BP",
           "Name": "LTV1_CamScanner",
-          "Systems": []
+          "Systems": [ "ParamWrangler"]
         },
         "#BP": {
           "BP_Path": "/Game/Prebuilt_BPs/GeometryTracer/E_TraceForObjects.E_TraceForObjects_C"
@@ -2455,7 +2421,7 @@
               "To": [ "EntityRef", "LTV1_Battery" ],
               "Solver": "AdvRes_Power",
               "Priority": 2,
-              "IsActive": true
+              "IsActive": false
             },
             "ChargingStation_LTV2": {
               "From": [ "EntityRef", "ChargingStationGenerator" ],

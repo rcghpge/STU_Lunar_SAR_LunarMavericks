@@ -34,6 +34,10 @@ class XY:
     def toLLA(self) -> st.PlanetUtils.LatLonAlt:
         loc = self.originLoc + self.originNWU.north() * self.x + self.originNWU.west() * self.y
         return st.PlanetUtils.PCPF_to_LLA(loc, self.originSM.radius)
+    
+    def __str__(self) -> str:
+        # rounds to nearest cm
+        return f"({round(self.x, 2)}, {round(self.y, 2)})"
 
 
 def CoordToXY(_coord: st.PlanetUtils.Coord) -> XY:
@@ -64,6 +68,15 @@ def Command_MoveToCoord(en: st.Entity, xy: XY, task_id: str):
     cmd.payload.AddParam(st.VarType.doubleV3, "Loc", coord.getLoc())
     return cmd
 
+def Command_Stop(en: st.Entity, task_id: str):
+    '''
+    Stop a movement immediately.
+    '''
+    cmd = Command("Stop", en)
+    cmd.payload.AddParam(st.VarType.entityRef, ["#meta", "Entity"], en)
+    cmd.payload.AddParam(st.VarType.string, "TaskID", task_id)
+    return cmd
+
 def Command_RotateToAzimuth(en: st.Entity, azimuth: float, task_id: str):
     cmd = Command("RotateToAzimuth", en)
     cmd.payload.AddParam(st.VarType.string, "TaskID", task_id)
@@ -81,4 +94,15 @@ def Command_CaptureImage(en: st.Entity, exposure: float, task_id: str):
     cmd = Command("CaptureImage", en)
     cmd.payload.AddParam(st.VarType.string, "TaskID", task_id)
     cmd.payload.AddParam(st.VarType.double, "Exposure", exposure)
+    return cmd
+
+def Command_PickUpAntenna(en: st.Entity, task_id: str):
+    cmd = Command("PickUpAntenna", en)
+    cmd.payload.AddParam(st.VarType.string, "TaskID", task_id)
+    cmd.payload.AddParam(st.VarType.string, "ParamListName", "Beacons")
+    return cmd
+
+def Command_PlaceDownAntenna(en: st.Entity, task_id: str):
+    cmd = Command("PlaceDownAntenna", en)
+    cmd.payload.AddParam(st.VarType.string, "TaskID", task_id)
     return cmd

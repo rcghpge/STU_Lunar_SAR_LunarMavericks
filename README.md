@@ -5,7 +5,7 @@ Space Teams University - Lunar SAR Design Challenge.
 AIAA @ UTA fall 2024 semester
 
 This is a repository for a space systems designs challenge utilizing Space Teams Pro. The space system is in a WIP stage and is not 100% completed.
-See links for more information. Join us @ AIAA
+See links for more information. 
 
 **AIAA:** https://www.aiaa.org/   
 **AIAA @ UTA:** https://aiaa-uta.square.site/  
